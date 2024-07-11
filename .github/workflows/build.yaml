@@ -41,7 +41,7 @@ jobs:
           yarn tsc
 
       - name: Build Docker Image
-          working-directory: ./backstage
+          working-directory: ./backstage/
 
           # Build backend
           yarn build:backend --config ../../app-config.yaml
