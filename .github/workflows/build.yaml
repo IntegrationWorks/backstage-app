@@ -36,6 +36,7 @@ jobs:
           sudo apt install yarn
 
       - name: Install yarn dependencies
+        working-directory: ./backstage
         run: |
           yarn install --frozen-lockfile
           yarn tsc
