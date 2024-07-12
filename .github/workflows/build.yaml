@@ -1,8 +1,13 @@
 name: build
 on:
-  push:
-    branches:
-      - '**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: Environment to deploy
+        options:
+          - dev
+        default: dev
 
 jobs:
   build:
@@ -41,9 +46,23 @@ jobs:
           yarn install --frozen-lockfile
           yarn tsc
 
-      - name: Build Docker Image
+      - name: Build Application
         working-directory: ./backstage
         run: |
           # Build backend
           yarn build:backend --config ../../app-config.yaml
+
+      - name: ACR build
+        id: acr
+        uses: azure/acr-build@v1
+        with:
+          service_principal: ${{ env.ARM_CLIENT_ID}}
+          service_principal_password: ${{ env.ARM_CLIENT_SECRET}}
+          tenant: ${{env.ARM_TENANT_ID}}
+          registry: iwaccelerator.azurecr.io
+          repository: ${{ secrets.repository }}
+          image: "backstage-app-${{ github.event.inputs.environment }}"
+          dockerfile: backstage/packages/backend/Dockerfile
+          branch: main
+
       
