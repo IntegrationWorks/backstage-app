@@ -60,7 +60,7 @@ jobs:
           service_principal_password: ${{ env.ARM_CLIENT_SECRET}}
           tenant: ${{env.ARM_TENANT_ID}}
           registry: iwaccelerator.azurecr.io
-          repository: ${{ secrets.repository }}
+          repository: test
           image: "backstage-app-${{ github.event.inputs.environment }}"
           dockerfile: backstage/packages/backend/Dockerfile
           branch: main
