@@ -61,9 +61,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
+          context: ./backstage
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
-          file: backstage/packages/backend/Dockerfile
+          file: packages/backend/Dockerfile
    
 
       
