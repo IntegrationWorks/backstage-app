@@ -8,7 +8,7 @@
 # yarn build:backend
 #
 # Once the commands have been run, you can build the image using `yarn build-image`
-
+ARG ENV=development
 FROM node:18-bookworm-slim
 
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
@@ -34,7 +34,7 @@ USER node
 WORKDIR /app
 
 # This switches many Node.js dependencies to production mode.
-ENV NODE_ENV production
+ENV NODE_ENV ${ENV}
 
 # Copy repo skeleton first, to avoid unnecessary docker cache invalidation.
 # The skeleton contains the package.json of each package in the monorepo,

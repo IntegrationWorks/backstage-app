@@ -6,8 +6,9 @@ on:
         type: choice
         description: Environment to deploy
         options:
-          - dev
-        default: dev
+          - development
+          - production
+        default: development
 
 jobs:
   build:
@@ -67,3 +68,5 @@ jobs:
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
           file: backstage/packages/backend/Dockerfile
+          build-args: |
+            ENV=development
