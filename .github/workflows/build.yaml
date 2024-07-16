@@ -46,6 +46,10 @@ jobs:
           # Build backend
           yarn build:backend --config ../../app-config.yaml
 
+      - name: Check DIR
+        run: |
+        ls
+
       - name: Docker Login
         uses: azure/docker-login@v2
         with:
