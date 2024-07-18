@@ -1,0 +1,31 @@
+
+# For local testing of docker container
+version: "3.9"
+services:
+
+
+
+  db:
+    image: 'postgres:13.1-alpine'
+    restart: always
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+
+
+  backstage:
+    depends_on:
+    - db
+    image: 'backstage-test:latest'
+    container_name: backstage
+    ports:
+      - 7007:7007
+      - 3000:3000
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

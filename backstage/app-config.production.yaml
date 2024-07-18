@@ -11,7 +11,7 @@ backend:
   baseUrl: http://localhost:7007
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
-  listen: ':7007'
+  listen: ":7007"
 
   # config options: https://node-postgres.com/apis/client
   database:
@@ -29,8 +29,18 @@ backend:
       #     $file: <file-path>/ca/server.crt
 
 auth:
+  environment: development
   providers:
-    guest: null
+    # See https://backstage.io/docs/auth/guest/provider
+    github:
+      development:
+        clientId: TODO
+        clientSecret: TODO
+        signIn:
+          resolvers:
+            # Matches the GitHub username with the Backstage user entity name.
+            # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
+            - resolver: usernameMatchingUserEntityName
 
 catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
