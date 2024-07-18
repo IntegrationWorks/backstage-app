@@ -19,6 +19,7 @@ services:
   backstage:
     depends_on:
     - db
+    restart: always
     image: 'backstage-test:latest'
     container_name: backstage
     ports:
