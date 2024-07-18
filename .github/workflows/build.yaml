@@ -19,6 +19,10 @@ jobs:
       ARM_CLIENT_SECRET: ${{secrets.ARM_CLIENT_SECRET}}
       ARM_TENANT_ID: ${{secrets.ARM_TENANT_ID}}
       ARM_SUBSCRIPTION_ID: ${{secrets.ARM_SUBSCRIPTION_ID}}
+      POSTGRES_HOST: ${{secrets.POSTGRES_HOST}}
+      POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+      POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
+
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -68,5 +72,7 @@ jobs:
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
           file: backstage/packages/backend/Dockerfile
-          build-args: |
-            ENV=development
+          secrets: |
+            POSTGRES_HOST=${{env.POSTGRES_HOST}}
+            POSTGRES_USER=${{env.POSTGRES_USER}}
+            POSTGRES_PASSWORD=${{POSTGRES_PASSWORD}}
