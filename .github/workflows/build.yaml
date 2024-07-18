@@ -20,6 +20,7 @@ jobs:
       ARM_TENANT_ID: ${{secrets.ARM_TENANT_ID}}
       ARM_SUBSCRIPTION_ID: ${{secrets.ARM_SUBSCRIPTION_ID}}
       POSTGRES_HOST: ${{secrets.POSTGRES_HOST}}
+      POSTGRES_PORT: 5432
       POSTGRES_USER: ${{secrets.POSTGRES_USER}}
       POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
 
@@ -72,7 +73,3 @@ jobs:
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
           file: backstage/packages/backend/Dockerfile
-          secrets: |
-            POSTGRES_HOST=${{env.POSTGRES_HOST}}
-            POSTGRES_USER=${{env.POSTGRES_USER}}
-            POSTGRES_PASSWORD=${{env.POSTGRES_PASSWORD}}

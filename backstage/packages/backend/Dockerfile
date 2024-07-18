@@ -11,10 +11,6 @@
 
 FROM node:18-bookworm-slim
 
-ENV POSTGRES_HOST /run/secrets/POSTGRES_HOST
-ENV POSTGRES_USER /run/secrets/POSTGRES_USER
-ENV POSTGRES_PORT 5432
-ENV POSTGRES_PASSWORD /run/secrets/POSTGRES_PASSWORD
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
@@ -54,5 +50,8 @@ COPY --chown=node:node packages/backend/dist/bundle.tar.gz app-config*.yaml ./
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
 EXPOSE 7007
+
+EXPOSE 5432
+
 
 CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
