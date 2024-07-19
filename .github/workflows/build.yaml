@@ -36,43 +36,42 @@ jobs:
       - name: check env
         working-directory: ./backstage
         run: |
+          bash replace_env_vars.sh test.txt POSTGRES_HOST=${{env.POSTGRES_HOST}} POSTGRES_USER=${{env.POSTGRES_USER}} POSTGRES_PORT=${{env.POSTGRES_PORT}} POSTGRES_PASSWORD=${{env.POSTGRES_PASSWORD}}
 
-          cat app-config.production.yaml
+      - name: Install yarn
+        run: |
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/yarn.gpg
+          echo "deb [signed-by=/etc/apt/trusted.gpg.d/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          sudo apt update
+          sudo apt install yarn
 
-      # - name: Install yarn
-      #   run: |
-      #     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/yarn.gpg
-      #     echo "deb [signed-by=/etc/apt/trusted.gpg.d/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-      #     sudo apt update
-      #     sudo apt install yarn
+      - name: Install yarn dependencies
+        working-directory: ./backstage
+        run: |
+          yarn install --frozen-lockfile
+          yarn tsc
 
-      # - name: Install yarn dependencies
-      #   working-directory: ./backstage
-      #   run: |
-      #     yarn install --frozen-lockfile
-      #     yarn tsc
+      - name: Build Application
+        working-directory: ./backstage
+        run: |
+          # Build backend
 
-      # - name: Build Application
-      #   working-directory: ./backstage
-      #   run: |
-      #     # Build backend
+          yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
 
-      #     yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
+      - name: Docker Login
+        uses: azure/docker-login@v2
+        with:
+          login-server: ${{ secrets.AZURE_REPO_URL }}
+          username: ${{ env.ARM_CLIENT_ID }}
+          password: ${{ env.ARM_CLIENT_SECRET }}
 
-      # - name: Docker Login
-      #   uses: azure/docker-login@v2
-      #   with:
-      #     login-server: ${{ secrets.AZURE_REPO_URL }}
-      #     username: ${{ env.ARM_CLIENT_ID }}
-      #     password: ${{ env.ARM_CLIENT_SECRET }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v3
-
-      # - name: Build and push
-      #   uses: docker/build-push-action@v6
-      #   with:
-      #     context: ./backstage
-      #     push: true
-      #     tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
-      #     file: backstage/packages/backend/Dockerfile
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backstage
+          push: true
+          tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
+          file: backstage/packages/backend/Dockerfile
