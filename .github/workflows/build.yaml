@@ -36,8 +36,13 @@ jobs:
       - name: check env
         working-directory: ./backstage
         run: |
-          bash replace_env_vars.sh test.txt POSTGRES_HOST=${{env.POSTGRES_HOST}} POSTGRES_USER=${{env.POSTGRES_USER}} POSTGRES_PORT=${{env.POSTGRES_PORT}} POSTGRES_PASSWORD=${{env.POSTGRES_PASSWORD}}
+          bash replace_env_vars.sh app-config.production.yaml POSTGRES_HOST=${{env.POSTGRES_HOST}} POSTGRES_USER=${{env.POSTGRES_USER}} POSTGRES_PORT=${{env.POSTGRES_PORT}} POSTGRES_PASSWORD=${{env.POSTGRES_PASSWORD}}
 
+      - name: check File contents
+        working-directory: ./backstage
+        run: |
+          cat app-config.production.yaml
+          
       - name: Install yarn
         run: |
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/yarn.gpg
