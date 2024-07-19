@@ -36,10 +36,7 @@ jobs:
       - name: check env
         run: |
 
-          echo $POSTGRES_HOST
-          echo $POSTGRES_PORT
-          echo $POSTGRES_USER
-          echo $POSTGRES_PASSWORD
+          cat app-config.production.yaml
 
       # - name: Install yarn
       #   run: |
