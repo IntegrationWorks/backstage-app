@@ -7,7 +7,8 @@ replace_env_vars() {
   for pair in "$@"; do
     var="${pair%%=*}"
     value="${pair#*=}"
-    text=$(echo "$text" | sed "s#\\\${$var}#$value#g")
+    # Use printf to handle special characters properly
+    text=$(printf '%s\n' "$text" | sed "s#\\\${$var}#${value//\\/\\\\}#g")
   done
   echo "$text"
 }
