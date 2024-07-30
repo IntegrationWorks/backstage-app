@@ -1,7 +1,7 @@
 location                       = "australiaeast"
 resource_group_name            = "iw-accelerator-rg"
 private_dns_zone_name          = "psql-private-dns-zone"
-resource_prefix                = "iwaccelerator"
+resource_prefix                = "iw-accelerator-test"
 psql_subnet_name               = "psql"
 aca_env_subnet_name            = "aca-env"
 nginx_aca_name                 = "nginx-reverse-proxy"
