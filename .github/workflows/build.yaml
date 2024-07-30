@@ -91,7 +91,7 @@ jobs:
       - name: Build and push Nginx image
         uses: docker/build-push-action@v6
         with:
-          context: ./backstage
+          context: ./nginx
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/nginx:latest
-          file: backstage/nginx/Dockerfile
+          file: nginx/Dockerfile
