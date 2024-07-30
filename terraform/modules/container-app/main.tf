@@ -1,7 +1,7 @@
 
 
 resource "azurerm_container_app" "this" {
-  name                         = "${var.resource_prefix}-${var.aca_name}"
+  name = "${var.resource_prefix}-${var.aca_name}"
 
   resource_group_name          = var.resource_group_name
   container_app_environment_id = var.aca_env_id
@@ -23,7 +23,7 @@ resource "azurerm_container_app" "this" {
     external_enabled           = var.external_enabled
 
     traffic_weight {
-      percentage = 100
+      percentage      = 100
       latest_revision = true
     }
   }

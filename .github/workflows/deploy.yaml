@@ -79,4 +79,4 @@ jobs:
         if: github.event.inputs.destroy == 'true' || env.IS_SCHEDULED == 'true'
         working-directory: ./terraform
         run: |
-          terraform destroy -auto-approve -var-file="./tfvars/${{ env.ENVIRONMENT }}-vars.tfvars"
+          terraform destroy -auto-approve -var-file="./tfvars/${{ github.event.inputs.environment }}-vars.tfvars"

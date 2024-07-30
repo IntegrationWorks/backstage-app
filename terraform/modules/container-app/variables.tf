@@ -30,5 +30,5 @@ variable "target_port" {
 
 variable "external_enabled" {
   description = "Are connections to this Ingress from outside the Container App Environment enabled?"
-  
+
 }
