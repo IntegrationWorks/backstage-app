@@ -15,7 +15,7 @@ resource "azurerm_postgresql_flexible_server" "this" {
   location            = azurerm_resource_group.this.location
   resource_group_name = var.resource_group_name
 
-  version                       = "16.3"
+  version                       = "16"
   delegated_subnet_id           = azurerm_subnet.psql.id
   private_dns_zone_id           = azurerm_private_dns_zone.this.id
   public_network_access_enabled = false
@@ -71,9 +71,9 @@ resource "azurerm_container_app_environment" "this" {
 }
 
 module "nginx" {
-  
+
   source               = "./modules/container-app"
-  location             = azurerm_resource_group.this.location
+
   resource_group_name  = azurerm_resource_group.this.name
   aca_name             = var.nginx_aca_name
   container_name       = var.nginx_container_name
@@ -83,9 +83,9 @@ module "nginx" {
 }
 
 module "backstage" {
-  depends_on = [ azurerm_postgresql_flexible_server.this , module.nginx]
+  depends_on           = [azurerm_postgresql_flexible_server.this, module.nginx]
   source               = "./modules/container-app"
-  location             = azurerm_resource_group.this.location
+
   resource_group_name  = azurerm_resource_group.this.name
   aca_name             = var.backstage_aca_name
   container_name       = var.backstage_container_name

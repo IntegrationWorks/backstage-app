@@ -2,7 +2,7 @@
 
 resource "azurerm_container_app" "this" {
   name                         = "${var.resource_prefix}-${var.aca_name}"
-  location                     = var.location
+
   resource_group_name          = var.resource_group_name
   container_app_environment_id = var.aca_env_id
   revision_mode                = "Single"
