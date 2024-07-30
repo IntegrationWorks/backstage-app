@@ -13,6 +13,14 @@ variable "resource_prefix" {
 
 }
 
+variable "psql_username" {
+  description = "Postgres DB admin username"
+}
+
+variable "psql_password" {
+  description = "Postgres DB admin password"
+}
+
 variable "private_dns_zone_name" {
   description = "Private domain name for postgres database."
 }

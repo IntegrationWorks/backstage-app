@@ -19,8 +19,8 @@ resource "azurerm_postgresql_flexible_server" "this" {
   delegated_subnet_id           = azurerm_subnet.psql.id
   private_dns_zone_id           = azurerm_private_dns_zone.this.id
   public_network_access_enabled = false
-  administrator_login           = "TODO"
-  administrator_password        = "TODO"
+  administrator_login           = var.psql_username
+  administrator_password        = var.psql_password
 
   storage_mb   = 32768
   storage_tier = "P4"
@@ -63,7 +63,7 @@ resource "azurerm_log_analytics_workspace" "this" {
 }
 
 resource "azurerm_container_app_environment" "this" {
-  name                       = "my-environment"
+  name                       = "${var.resource_prefix}-aca-env"
   location                   = azurerm_resource_group.this.location
   resource_group_name        = azurerm_resource_group.this.name
   log_analytics_workspace_id = azurerm_log_analytics_workspace.this.id
