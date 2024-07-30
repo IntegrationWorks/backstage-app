@@ -8,7 +8,7 @@ on:
         options:
           - dev
           - prod
-        default: development
+        default: dev
 
 jobs:
   deploy:
@@ -19,7 +19,9 @@ jobs:
       ARM_CLIENT_SECRET: ${{secrets.ARM_CLIENT_SECRET}}
       ARM_TENANT_ID: ${{secrets.ARM_TENANT_ID}}
       ARM_SUBSCRIPTION_ID: ${{secrets.ARM_SUBSCRIPTION_ID}}
-
+      # Terraform variables
+      TF_VAR_nginx_container_image_name: ${{ secrets.AZURE_REPO_URL }}/nginx:latest
+      TF_VAR_backstage_container_image_name: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
       TF_VAR_psql_username: ${{secrets.POSTGRES_USER}}
       TF_VAR_psql_password: ${{secrets.POSTGRES_PASSWORD}}
 

@@ -29,7 +29,7 @@ resource "azurerm_postgresql_flexible_server" "this" {
 }
 
 resource "azurerm_virtual_network" "this" {
-  name                = "${var.resource_prefix}-${var.virtual_network_name}"
+  name                = "${var.resource_prefix}-vnet"
   location            = azurerm_resource_group.this.location
   resource_group_name = var.resource_group_name
   address_space       = ["10.0.0.0/16"]

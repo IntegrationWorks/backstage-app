@@ -25,10 +25,6 @@ variable "private_dns_zone_name" {
   description = "Private domain name for postgres database."
 }
 
-variable "virtual_network_name" {
-  description = "Name of the virtual network resource"
-}
-
 variable "psql_subnet_name" {
   description = "name of the postgres db subnet"
 }
