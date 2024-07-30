@@ -32,3 +32,11 @@ variable "external_enabled" {
   description = "Are connections to this Ingress from outside the Container App Environment enabled?"
 
 }
+
+variable "identity_id" {
+  description = "Managed identity id for pulling images from ACR"
+}
+
+variable "acr_server" {
+  description = "Login server for azure container apps."
+}

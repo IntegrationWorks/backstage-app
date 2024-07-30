@@ -7,6 +7,17 @@ resource "azurerm_container_app" "this" {
   container_app_environment_id = var.aca_env_id
   revision_mode                = "Single"
 
+  identity {
+    type         = "UserAssigned"
+    identity_ids = [var.identity_id]
+  }
+
+  registry {
+    server = var.acr_server
+    identity = var.identity_id
+    
+  }
+
   template {
     container {
       name   = var.container_name
@@ -16,7 +27,10 @@ resource "azurerm_container_app" "this" {
     }
 
 
+
   }
+
+
   ingress {
     target_port                = var.target_port
     allow_insecure_connections = false

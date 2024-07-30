@@ -1,15 +1,38 @@
 
 
 
-resource "azurerm_resource_group" "this" {
+data "azurerm_resource_group" "this" {
   name     = var.resource_group_name
-  location = var.location
+}
+
+data "azurerm_container_registry" "acr" {
+  name                = "iwaccelerator"
+  resource_group_name = "james-sandbox"
 }
 resource "azurerm_private_dns_zone" "this" {
   depends_on = [ azurerm_resource_group.this ]
   name                = var.private_dns_zone_name
   resource_group_name = var.resource_group_name
 }
+
+
+
+
+resource "azurerm_user_assigned_identity" "this" {
+  location            = data.azurerm_resource_group.this.location
+  name                = "containerappmi"
+  resource_group_name = data.azurerm_resource_group.this.name
+}
+
+resource "azurerm_role_assignment" "containerapp" {
+  scope                = data.azurerm_container_registry.acr.id
+  role_definition_name = "acrpull"
+  principal_id         = azurerm_user_assigned_identity.this.principal_id
+  depends_on = [
+    azurerm_user_assigned_identity.this
+  ]
+}
+
 
 resource "azurerm_postgresql_flexible_server" "this" {
   name                = "${var.resource_prefix}-psql"
@@ -88,6 +111,9 @@ module "nginx" {
   external_enabled     = true
 
   depends_on = [ azurerm_container_app_environment.this ]
+
+  identity_id =azurerm_user_assigned_identity.this.id
+  acr_server = data.azurerm_container_registry.acr.login_server
 }
 
 module "backstage" {
@@ -102,5 +128,6 @@ module "backstage" {
   resource_prefix      = var.resource_prefix
   target_port          = 7007
   external_enabled     = false
-  
+  identity_id =azurerm_user_assigned_identity.this.id
+  acr_server = data.azurerm_container_registry.acr.login_server
 }
