@@ -26,5 +26,9 @@ variable "container_image_name" {
 
 variable "target_port" {
   description = "Target port of the container"
-  default     = 80
+}
+
+variable "external_enabled" {
+  description = "Are connections to this Ingress from outside the Container App Environment enabled?"
+  
 }

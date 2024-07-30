@@ -80,6 +80,8 @@ module "nginx" {
   container_image_name = var.nginx_container_image_name
   aca_env_id           = azurerm_container_app_environment.this.id
   resource_prefix      = var.resource_prefix
+  target_port = 80
+  external_enabled = true
 }
 
 module "backstage" {
@@ -92,5 +94,6 @@ module "backstage" {
   container_image_name = var.backstage_container_image_name
   aca_env_id           = azurerm_container_app_environment.this.id
   resource_prefix      = var.resource_prefix
-
+  target_port = 7007
+  external_enabled = false
 }
