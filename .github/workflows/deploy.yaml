@@ -10,6 +10,10 @@ on:
           - prod
         default: dev
 
+      destroy:
+        type: boolean
+        description: Destroy Terraform
+        default: false
 jobs:
   deploy:
     name: "Deploy ${{ github.event.inputs.environment }}"
