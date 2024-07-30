@@ -49,7 +49,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        working-directory: ./push-based/notification
+        working-directory: ./terraform
         run: |
           terraform init -backend-config="key=${{ env.REPO_NAME }}-${{ env.ENVIRONMENT }}.tfstate"
 
@@ -60,19 +60,19 @@ jobs:
 
       - name: Terraform Plan
         if: github.event.inputs.destroy == 'false'
-        working-directory: ./push-based/notification
+        working-directory: ./terraform
         id: plan
         run: |
           terraform plan  -var-file="./tfvars/${{ github.event.inputs.environment }}-vars.tfvars" -out main.tfplan
 
       - name: Apply
         if: github.event.inputs.destroy == 'false'
-        working-directory: ./push-based/notification
+        working-directory: ./terraform
         run: |
           terraform apply "main.tfplan"
 
       - name: Terraform Destroy
         if: github.event.inputs.destroy == 'true' || env.IS_SCHEDULED == 'true'
-        working-directory: ./push-based/notification
+        working-directory: ./terraform
         run: |
           terraform destroy -auto-approve -var-file="./tfvars/${{ env.ENVIRONMENT }}-vars.tfvars"
