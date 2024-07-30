@@ -71,6 +71,7 @@ resource "azurerm_container_app_environment" "this" {
 }
 
 module "nginx" {
+  
   source               = "./modules/container-app"
   location             = azurerm_resource_group.this.location
   resource_group_name  = azurerm_resource_group.this.name
@@ -82,6 +83,7 @@ module "nginx" {
 }
 
 module "backstage" {
+  depends_on = [ azurerm_postgresql_flexible_server.this , module.nginx]
   source               = "./modules/container-app"
   location             = azurerm_resource_group.this.location
   resource_group_name  = azurerm_resource_group.this.name
