@@ -80,10 +80,18 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push
+      - name: Build and push Backstage image
         uses: docker/build-push-action@v6
         with:
           context: ./backstage
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
           file: backstage/packages/backend/Dockerfile
+
+      - name: Build and push Nginx image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backstage
+          push: true
+          tags: ${{ secrets.AZURE_REPO_URL }}/nginx:latest
+          file: backstage/nginx/Dockerfile
