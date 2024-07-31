@@ -2,7 +2,7 @@
 
 
 data "azurerm_resource_group" "this" {
-  name     = var.resource_group_name
+  name = var.resource_group_name
 }
 
 data "azurerm_container_registry" "acr" {
@@ -10,7 +10,7 @@ data "azurerm_container_registry" "acr" {
   resource_group_name = "james-sandbox"
 }
 resource "azurerm_private_dns_zone" "this" {
-  depends_on = [ data.azurerm_resource_group.this ]
+  depends_on          = [data.azurerm_resource_group.this]
   name                = var.private_dns_zone_name
   resource_group_name = var.resource_group_name
 }
@@ -53,34 +53,52 @@ resource "azurerm_postgresql_flexible_server" "this" {
 }
 
 resource "azurerm_virtual_network" "this" {
-  depends_on = [ data.azurerm_resource_group.this ]
+  depends_on          = [data.azurerm_resource_group.this]
   name                = "${var.resource_prefix}-vnet"
   location            = data.azurerm_resource_group.this.location
   resource_group_name = var.resource_group_name
   address_space       = ["10.0.0.0/16"]
 
-  
+
 }
 
 resource "azurerm_subnet" "psql" {
-  depends_on = [ azurerm_virtual_network.this ]
+  depends_on           = [azurerm_virtual_network.this]
   name                 = var.psql_subnet_name
   resource_group_name  = data.azurerm_resource_group.this.name
   virtual_network_name = azurerm_virtual_network.this.name
   address_prefixes     = ["10.0.0.0/24"]
 
+  delegation {
+    name = "delegation"
+
+    service_delegation {
+      name = "Microsoft.DBforPostgreSQL/flexibleServers"
+
+    }
+  }
+
+
 }
 
 resource "azurerm_subnet" "aca-env" {
-  depends_on = [ azurerm_virtual_network.this ]
+  depends_on           = [azurerm_virtual_network.this]
   name                 = var.aca_env_subnet_name
   resource_group_name  = data.azurerm_resource_group.this.name
   virtual_network_name = azurerm_virtual_network.this.name
   address_prefixes     = ["10.0.2.0/23"]
+
+  delegation {
+    name = "delegation"
+
+    service_delegation {
+      name = "Microsoft.App/environments"
+    }
+  }
 }
 
 resource "azurerm_log_analytics_workspace" "this" {
-  depends_on = [ data.azurerm_resource_group.this ]
+  depends_on          = [data.azurerm_resource_group.this]
   name                = "${var.resource_prefix}-logs"
   location            = data.azurerm_resource_group.this.location
   resource_group_name = data.azurerm_resource_group.this.name
@@ -89,7 +107,7 @@ resource "azurerm_log_analytics_workspace" "this" {
 }
 
 resource "azurerm_container_app_environment" "this" {
-  depends_on = [ azurerm_subnet.aca-env ]
+  depends_on                 = [azurerm_subnet.aca-env]
   name                       = "${var.resource_prefix}-aca-env"
   location                   = data.azurerm_resource_group.this.location
   resource_group_name        = data.azurerm_resource_group.this.name
@@ -110,10 +128,10 @@ module "nginx" {
   target_port          = 80
   external_enabled     = true
 
-  depends_on = [ azurerm_container_app_environment.this , azurerm_role_assignment.this, data.azurerm_container_registry.acr]
+  depends_on = [azurerm_container_app_environment.this, azurerm_role_assignment.this, data.azurerm_container_registry.acr]
 
-  identity_id =azurerm_user_assigned_identity.this.id
-  acr_server = data.azurerm_container_registry.acr.login_server
+  identity_id = azurerm_user_assigned_identity.this.id
+  acr_server  = data.azurerm_container_registry.acr.login_server
 }
 
 module "backstage" {
@@ -128,6 +146,6 @@ module "backstage" {
   resource_prefix      = var.resource_prefix
   target_port          = 7007
   external_enabled     = false
-  identity_id =azurerm_user_assigned_identity.this.id
-  acr_server = data.azurerm_container_registry.acr.login_server
+  identity_id          = azurerm_user_assigned_identity.this.id
+  acr_server           = data.azurerm_container_registry.acr.login_server
 }
