@@ -87,14 +87,6 @@ resource "azurerm_subnet" "aca-env" {
   resource_group_name  = data.azurerm_resource_group.this.name
   virtual_network_name = azurerm_virtual_network.this.name
   address_prefixes     = ["10.0.2.0/23"]
-
-  delegation {
-    name = "delegation"
-
-    service_delegation {
-      name = "Microsoft.App/environments"
-    }
-  }
 }
 
 resource "azurerm_log_analytics_workspace" "this" {
