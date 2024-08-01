@@ -18,21 +18,10 @@ resource "azurerm_private_dns_zone" "this" {
 
 
 
-resource "azurerm_user_assigned_identity" "this" {
-  location            = data.azurerm_resource_group.this.location
-  name                = "containerappmi"
+data "azurerm_user_assigned_identity" "this" {
+  name                = "backstage-acr"
   resource_group_name = data.azurerm_resource_group.this.name
 }
-
-resource "azurerm_role_assignment" "this" {
-  scope                = data.azurerm_container_registry.acr.id
-  role_definition_name = "acrpull"
-  principal_id         = azurerm_user_assigned_identity.this.principal_id
-  depends_on = [
-    azurerm_user_assigned_identity.this
-  ]
-}
-
 
 resource "azurerm_postgresql_flexible_server" "this" {
   name                = "${var.resource_prefix}-psql"
@@ -120,14 +109,14 @@ module "nginx" {
   target_port          = 80
   external_enabled     = true
 
-  depends_on = [azurerm_container_app_environment.this, azurerm_role_assignment.this, data.azurerm_container_registry.acr]
+  depends_on = [azurerm_container_app_environment.this,data.azurerm_user_assigned_identity.this, data.azurerm_container_registry.acr]
 
-  identity_id = azurerm_user_assigned_identity.this.id
+  identity_id = data.azurerm_user_assigned_identity.this.id
   acr_server  = data.azurerm_container_registry.acr.login_server
 }
 
 module "backstage" {
-  depends_on = [azurerm_postgresql_flexible_server.this, azurerm_container_app_environment.this, azurerm_role_assignment.this, data.azurerm_container_registry.acr]
+  depends_on = [azurerm_postgresql_flexible_server.this, azurerm_container_app_environment.this, data.azurerm_user_assigned_identity.this, data.azurerm_container_registry.acr]
   source     = "./modules/container-app"
 
   resource_group_name  = data.azurerm_resource_group.this.name
@@ -138,6 +127,6 @@ module "backstage" {
   resource_prefix      = var.resource_prefix
   target_port          = 7007
   external_enabled     = false
-  identity_id          = azurerm_user_assigned_identity.this.id
+  identity_id          = data.azurerm_user_assigned_identity.this.id
   acr_server           = data.azurerm_container_registry.acr.login_server
 }

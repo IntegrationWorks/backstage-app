@@ -13,8 +13,7 @@ resource "azurerm_container_app" "this" {
   }
 
   registry {
-    server   = var.acr_server
-    identity = var.identity_id
+    server = var.acr_server
 
   }
 
