@@ -26,8 +26,7 @@ jobs:
       # Terraform variables
       TF_VAR_nginx_container_image_name: ${{ secrets.AZURE_REPO_URL }}/nginx:latest
       TF_VAR_backstage_container_image_name: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
-      TF_VAR_psql_username: ${{secrets.POSTGRES_USER}}
-      TF_VAR_psql_password: ${{secrets.POSTGRES_PASSWORD}}
+      
 
     runs-on: ubuntu-latest
     permissions:
