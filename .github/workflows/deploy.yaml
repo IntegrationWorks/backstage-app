@@ -18,6 +18,7 @@ jobs:
   deploy:
     name: "Deploy ${{ github.event.inputs.environment }}"
     env:
+      ENVIRONMENT: ${{ github.event.inputs.environment }}
       REPO_NAME: ${{ github.event.repository.name }}
       ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
       ARM_CLIENT_SECRET: ${{secrets.ARM_CLIENT_SECRET}}
@@ -75,7 +76,7 @@ jobs:
           terraform apply "main.tfplan"
 
       - name: Terraform Destroy
-        if: github.event.inputs.destroy == 'true' || env.IS_SCHEDULED == 'true'
+        if: github.event.inputs.destroy == 'true'
         working-directory: ./terraform
         run: |
           terraform destroy -auto-approve -var-file="./tfvars/${{ github.event.inputs.environment }}-vars.tfvars"
