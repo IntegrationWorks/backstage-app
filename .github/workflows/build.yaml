@@ -57,6 +57,15 @@ jobs:
           webhookSecret: ${{env.AUTH_ORG_WEBHOOK_SECRET}}
           privateKey: ${{env.AUTH_ORG_PRIVATE_KEY}}" >> github-credentials.yaml
 
+      - name: test
+        run: | 
+          ls
+
+      - name: test-1
+        working-directory: ./backstage
+        run: | 
+          ls
+
       - name: Replace environment variables in app-config.production.yaml
         working-directory: ./backstage
         run: |
