@@ -3956,6 +3956,23 @@
     octokit-plugin-create-pull-request "^5.0.0"
     yaml "^2.0.0"
 
+"@backstage/plugin-scaffolder-backend-module-github@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-scaffolder-backend-module-github/-/plugin-scaffolder-backend-module-github-0.4.1.tgz#e2f0da2e0515153ed0fc8bd469674b2365b8a1ac"
+  integrity sha512-XH6byfU0ugQtI1DW7W6mUPKFXqAMMEFdpd5bXTLwsH0Yglj2EVL/9Vc61b4r9/2EVX6aSRS/28jJFzewCOJ3DQ==
+  dependencies:
+    "@backstage/backend-common" "^0.24.0"
+    "@backstage/backend-plugin-api" "^0.8.0"
+    "@backstage/config" "^1.2.0"
+    "@backstage/errors" "^1.2.4"
+    "@backstage/integration" "^1.14.0"
+    "@backstage/plugin-scaffolder-node" "^0.4.9"
+    "@octokit/webhooks" "^10.0.0"
+    libsodium-wrappers "^0.7.11"
+    octokit "^3.0.0"
+    octokit-plugin-create-pull-request "^5.0.0"
+    yaml "^2.0.0"
+
 "@backstage/plugin-scaffolder-backend-module-gitlab@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@backstage/plugin-scaffolder-backend-module-gitlab/-/plugin-scaffolder-backend-module-gitlab-0.4.3.tgz#d44056c99cf6e93340129bb4e123b2f905f80916"
@@ -4039,6 +4056,15 @@
     "@backstage/plugin-permission-common" "^0.7.14"
     "@backstage/types" "^1.1.1"
 
+"@backstage/plugin-scaffolder-common@^1.5.5":
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-scaffolder-common/-/plugin-scaffolder-common-1.5.5.tgz#4bc0aae0a125b383223f2725595f471e678afbf7"
+  integrity sha512-3ugY2bjW9zF6oeutIagmTht6PkJmHTmV9DP3VZdZSEvmW8mqR3tQkoUuJ1GmFm6LOMNnMUKxC2XqoKM7NSaCgA==
+  dependencies:
+    "@backstage/catalog-model" "^1.6.0"
+    "@backstage/plugin-permission-common" "^0.8.1"
+    "@backstage/types" "^1.1.1"
+
 "@backstage/plugin-scaffolder-node@^0.4.7":
   version "0.4.7"
   resolved "https://registry.yarnpkg.com/@backstage/plugin-scaffolder-node/-/plugin-scaffolder-node-0.4.7.tgz#bd7e7056f75bfe1a8f8830a2aaace66c0381dd62"
@@ -4056,6 +4082,29 @@
     isomorphic-git "^1.23.0"
     jsonschema "^1.2.6"
     p-limit "^3.1.0"
+    winston "^3.2.1"
+    zod "^3.22.4"
+    zod-to-json-schema "^3.20.4"
+
+"@backstage/plugin-scaffolder-node@^0.4.9":
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-scaffolder-node/-/plugin-scaffolder-node-0.4.9.tgz#ca2e90e372044127a8b7d65770b2c45bdb181d4b"
+  integrity sha512-wfHux+GzWeC80BoBbAR6ZwzTpAC1DMSdgCtv6HQ3T2x90HCugt1KDdip/IPGXSsr4kFb/Pyirzb1vnmLvgOULA==
+  dependencies:
+    "@backstage/backend-common" "^0.24.0"
+    "@backstage/backend-plugin-api" "^0.8.0"
+    "@backstage/catalog-model" "^1.6.0"
+    "@backstage/errors" "^1.2.4"
+    "@backstage/integration" "^1.14.0"
+    "@backstage/plugin-scaffolder-common" "^1.5.5"
+    "@backstage/types" "^1.1.1"
+    concat-stream "^2.0.0"
+    fs-extra "^11.2.0"
+    globby "^11.0.0"
+    isomorphic-git "^1.23.0"
+    jsonschema "^1.2.6"
+    p-limit "^3.1.0"
+    tar "^6.1.12"
     winston "^3.2.1"
     zod "^3.22.4"
     zod-to-json-schema "^3.20.4"

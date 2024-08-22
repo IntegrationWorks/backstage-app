@@ -56,3 +56,15 @@ catalog:
         schedule:
           frequency: PT45M
           timeout: PT3M
+    github:
+      providerId:
+        organization: "IntegrationWorks"
+        catalogPath: "/catalog-info.yaml" # string
+        filters:
+          branch: "main" # string
+          repository: "backstage-templates" # Regex
+        schedule: # same options as in SchedulerServiceTaskScheduleDefinition
+          # supports cron, ISO duration, "human duration" as used in code
+          frequency: { minutes: 30 }
+          # supports ISO duration, "human duration" as used in code
+          timeout: { minutes: 3 }
