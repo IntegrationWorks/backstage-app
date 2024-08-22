@@ -20,7 +20,7 @@ services:
     depends_on:
     - db
     restart: always
-    image: 'backstage-test:latest'
+    image: 'backstage:latest'
     container_name: backstage
     ports:
       - 7007:7007

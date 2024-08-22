@@ -65,7 +65,7 @@ auth:
   providers:
     # See https://backstage.io/docs/auth/guest/provider
     github:
-      development:
+      production:
         clientId:
           $include: github-credentials.yaml#clientId
         clientSecret:

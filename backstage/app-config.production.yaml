@@ -43,7 +43,16 @@ backend:
 #             - resolver: usernameMatchingUserEntityName
 
 catalog:
-  # Overrides the default list locations from app-config.yaml as these contain example data.
-  # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
-  # on how to get entities into the catalog.
+  orphanStrategy: delete
+  processingInterval: { minutes: 45 }
+  rules:
+    - allow: [Component, System, API, Resource, Location, Template]
   locations: []
+  providers:
+    githubOrg:
+      - id: production
+        githubUrl: "https://github.com"
+        organization: "IntegrationWorks"
+        schedule:
+          frequency: PT45M
+          timeout: PT3M
