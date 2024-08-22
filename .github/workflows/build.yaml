@@ -50,7 +50,7 @@ jobs:
         working-directory: ./backstage
         run: |
           echo "# Name: Backstage-container-apps
-          appID: ${{env.AUTH_ORG_APP_ID}}
+          appId: ${{env.AUTH_ORG_APP_ID}}
           webhookUrl: ${{env.AUTH_ORG_WEBHOOK_URL}}
           clientId: ${{env.AUTH_ORG_CLIENT_ID}}
           clientSecret: ${{env.AUTH_ORG_CLIENT_SECRET}}
