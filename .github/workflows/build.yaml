@@ -23,6 +23,13 @@ jobs:
       POSTGRES_PORT: 5432
       POSTGRES_USER: ${{secrets.POSTGRES_USER}}
       POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
+      AUTH_ORG_APP_ID: ${{secrets.AUTH_ORG_APP_ID}}
+      AUTH_ORG_CLIENT_ID: ${{secrets.AUTH_ORG_CLIENT_ID}}
+      AUTH_ORG_CLIENT_SECRET: ${{secrets.AUTH_ORG_CLIENT_SECRET}}
+      AUTH_ORG_PRIVATE_KEY: ${{secrets.AUTH_ORG_PRIVATE_KEY}}
+      AUTH_ORG_WEBHOOK_SECRET: ${{secrets.AUTH_ORG_WEBHOOK_SECRET}}
+      AUTH_ORG_WEBHOOK_URL: ${{secrets.AUTH_ORG_WEBHOOK_URL}}
+
 
     runs-on: ubuntu-latest
     permissions:
@@ -38,9 +45,17 @@ jobs:
 
       - name: List files in the current directory
         run: ls -la ./backstage
-
-      - name: Print initial content of app-config.production.yaml
-        run: cat ./backstage/app-config.production.yaml
+      
+      - name: Write Github Creds
+        working-directory: ./backstage
+        run: |
+          echo "# Name: Backstage-container-apps
+          appID: ${{env.AUTH_ORG_APP_ID}}
+          webhookUrl: ${{env.AUTH_ORG_WEBHOOK_URL}}
+          clientId: ${{env.AUTH_ORG_CLIENT_ID}}
+          clientSecret: ${{env.AUTH_ORG_CLIENT_SECRET}}
+          webhookSecret: ${{env.AUTH_ORG_WEBHOOK_SECRET}}
+          privateKey: ${{env.AUTH_ORG_PRIVATE_KEY}}" >> github-credentials.yaml
 
       - name: Replace environment variables in app-config.production.yaml
         working-directory: ./backstage
@@ -49,6 +64,7 @@ jobs:
 
       - name: Print updated content of app-config.production.yaml
         run: cat ./backstage/app-config.production.yaml
+      
 
       - name: Install yarn
         run: |

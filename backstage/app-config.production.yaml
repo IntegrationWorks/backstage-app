@@ -28,19 +28,19 @@ backend:
       #   ca: # if you have a CA file and want to verify it you can uncomment this section
       #     $file: <file-path>/ca/server.crt
 
-auth:
-  environment: development
-  providers:
-    # See https://backstage.io/docs/auth/guest/provider
-    github:
-      development:
-        clientId: TODO
-        clientSecret: TODO
-        signIn:
-          resolvers:
-            # Matches the GitHub username with the Backstage user entity name.
-            # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
-            - resolver: usernameMatchingUserEntityName
+# auth:
+#   environment: production
+#   providers:
+#     # See https://backstage.io/docs/auth/guest/provider
+#     github:
+#       production:
+#         clientId:
+#         clientSecret: TODO
+#         signIn:
+#           resolvers:
+#             # Matches the GitHub username with the Backstage user entity name.
+#             # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
+#             - resolver: usernameMatchingUserEntityName
 
 catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
