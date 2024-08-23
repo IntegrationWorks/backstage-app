@@ -13,7 +13,7 @@ backend:
   listen: ":7007"
 
   cors:
-    origin: https://${BASE_URL}
+    origin: ${BASE_URL}
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
 
@@ -72,11 +72,7 @@ catalog:
           frequency: { minutes: 30 }
           # supports ISO duration, "human duration" as used in code
           timeout: { minutes: 3 }
-auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
-  experimentalExtraAllowedOrigins:
-    [
-      "https://${BASE_URL}",
-      "https://${BASE_URL}:443",
-      "https://${BASE_URL}:8443",
-    ]
+# auth:
+#   # see https://backstage.io/docs/auth/ to learn about auth providers
+#   experimentalExtraAllowedOrigins:
+#     ["${BASE_URL}", "${BASE_URL}:443", "${BASE_URL}:8443"]
