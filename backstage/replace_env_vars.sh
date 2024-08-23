@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Function to replace environment variables
-replace_env_vars() {
+# Function to replace substrings
+replace_substrings() {
   local text="$1"
   shift
   for pair in "$@"; do
     var="${pair%%=*}"
     value="${pair#*=}"
-    # Use printf to handle special characters properly
-    text=$(printf '%s\n' "$text" | sed "s#\\\${$var}#${value//\\/\\\\}#g")
+    # Use sed to replace all instances of the substring
+    text=$(printf '%s\n' "$text" | sed "s#${var}#${value//\\/\\\\}#g")
   done
   echo "$text"
 }
@@ -40,10 +40,10 @@ if [[ $? -ne 0 ]]; then
   exit 1
 fi
 
-# Replace environment variables in content
-replaced_content=$(replace_env_vars "$content" "${env_vars[@]}")
+# Replace substrings in content
+replaced_content=$(replace_substrings "$content" "${env_vars[@]}")
 
 # Write back to the file (consider backup if needed)
 echo "$replaced_content" > "$filename"
 
-echo "Successfully replaced environment variables in '$filename'."
+echo "Successfully replaced substrings in '$filename'."

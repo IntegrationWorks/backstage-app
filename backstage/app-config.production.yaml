@@ -72,7 +72,7 @@ catalog:
           frequency: { minutes: 30 }
           # supports ISO duration, "human duration" as used in code
           timeout: { minutes: 3 }
-# auth:
-#   # see https://backstage.io/docs/auth/ to learn about auth providers
-#   experimentalExtraAllowedOrigins:
-#     ["${BASE_URL}", "${BASE_URL}:443", "${BASE_URL}:8443"]
+auth:
+  # see https://backstage.io/docs/auth/ to learn about auth providers
+  experimentalExtraAllowedOrigins:
+    ["${BASE_URL}", "${BASE_URL}:443", "${BASE_URL}:8443"]
