@@ -61,6 +61,7 @@ techdocs:
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
+  experimentalExtraAllowedOrigins: ['https://${dns_fqdn}', 'https://${dns_fqdn}:443', 'https://${dns_fqdn}:8443']
   environment: production
   providers:
     # See https://backstage.io/docs/auth/guest/provider

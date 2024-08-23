@@ -29,6 +29,7 @@ jobs:
       AUTH_ORG_PRIVATE_KEY: ${{secrets.AUTH_ORG_PRIVATE_KEY}}
       AUTH_ORG_WEBHOOK_SECRET: ${{secrets.AUTH_ORG_WEBHOOK_SECRET}}
       AUTH_ORG_WEBHOOK_URL: ${{secrets.AUTH_ORG_WEBHOOK_URL}}
+      BASE_URL: ${{secrets.BASE_URL}}
 
 
     runs-on: ubuntu-latest
@@ -69,7 +70,7 @@ jobs:
       - name: Replace environment variables in app-config.production.yaml
         working-directory: ./backstage
         run: |
-          bash replace_env_vars.sh app-config.production.yaml POSTGRES_HOST=${{ env.POSTGRES_HOST }} POSTGRES_USER=${{ env.POSTGRES_USER }} POSTGRES_PORT=${{ env.POSTGRES_PORT }} POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }}
+          bash replace_env_vars.sh app-config.production.yaml POSTGRES_HOST=${{ env.POSTGRES_HOST }} POSTGRES_USER=${{ env.POSTGRES_USER }} POSTGRES_PORT=${{ env.POSTGRES_PORT }} POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} BASE_URL=${{env.BASE_URL}}
 
       - name: Print updated content of app-config.production.yaml
         run: cat ./backstage/app-config.production.yaml
