@@ -47,3 +47,6 @@ replaced_content=$(replace_substrings "$content" "${env_vars[@]}")
 echo "$replaced_content" > "$filename"
 
 echo "Successfully replaced substrings in '$filename'."
+echo "$replaced_content"
+
+echo "Successfully replaced substrings in '$filename'."
