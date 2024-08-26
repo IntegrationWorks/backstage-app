@@ -12,24 +12,21 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  # baseUrl: http://localhost:7007
-  # listen:
-  #   port: 7007
-  # Uncomment the following host directive to bind to specific interfaces
-  # host: 127.0.0.1
+  baseUrl: http://localhost:7007
+  listen:
+    port: 7007
+    # Uncomment the following host directive to bind to specific interfaces
+    # host: 127.0.0.1
   csp:
     connect-src: ["'self'", "http:", "https:"]
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
-  # cors:
-  #   origin: http://localhost:3000
-  #   methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
-  #   credentials: true
+  cors:
+    origin: http://localhost:3000
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
   # This is for local development only, it is not recommended to use this in production
   # The production database configuration is stored in app-config.production.yaml
-
-  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
-
 integrations:
   github:
     - host: github.com
@@ -61,12 +58,7 @@ techdocs:
 
 # auth:
 #   # see https://backstage.io/docs/auth/ to learn about auth providers
-#   experimentalExtraAllowedOrigins:
-#     [
-#       "https://${dns_fqdn}",
-#       "https://${dns_fqdn}:443",
-#       "https://${dns_fqdn}:8443",
-#     ]
+#   experimentalExtraAllowedOrigins: ['https://${dns_fqdn}', 'https://${dns_fqdn}:443', 'https://${dns_fqdn}:8443']
 #   environment: production
 #   providers:
 #     # See https://backstage.io/docs/auth/guest/provider

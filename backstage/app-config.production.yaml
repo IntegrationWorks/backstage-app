@@ -10,8 +10,11 @@ backend:
   # and can't be reached by others.
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
-  listen: ":7007"
+  listen:
+    port: 7007
   baseUrl: ${BASE_URL}
+  csp:
+    connect-src: ["'self'", "http:", "https:"]
   cors:
     origin: ${BASE_URL}
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
@@ -95,3 +98,9 @@ auth:
             # Matches the GitHub username with the Backstage user entity name.
             # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
             - resolver: usernameMatchingUserEntityName
+
+integrations:
+  github:
+    - host: github.com
+      apps:
+        - $include: github-credentials.yaml
