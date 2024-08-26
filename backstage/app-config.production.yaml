@@ -1,6 +1,9 @@
 app:
+  title: Developer Portal
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
   baseUrl: ${BASE_URL}
+organization:
+  name: IntegrationWorks
 
 backend:
   # Note that the baseUrl should be the URL that the browser and other clients
@@ -48,6 +51,13 @@ backend:
 #             # Matches the GitHub username with the Backstage user entity name.
 #             # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
 #             - resolver: usernameMatchingUserEntityName
+
+techdocs:
+  builder: "local" # Alternatives - 'external'
+  generator:
+    runIn: "docker" # Alternatives - 'local'
+  publisher:
+    type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 catalog:
   orphanStrategy: delete
@@ -104,3 +114,5 @@ integrations:
     - host: github.com
       apps:
         - $include: github-credentials.yaml
+
+scaffolder:

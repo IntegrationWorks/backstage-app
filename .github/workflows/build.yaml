@@ -94,7 +94,7 @@ jobs:
         run: |
           # Build backend
 
-          yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
+          yarn build:backend --config ../../app-config.production.yaml
 
       - name: Docker Login
         uses: azure/docker-login@v2
