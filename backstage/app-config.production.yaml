@@ -114,5 +114,4 @@ integrations:
     - host: github.com
       apps:
         - $include: github-credentials.yaml
-
-scaffolder:
+# scaffolder:
