@@ -51,4 +51,4 @@ RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
 
 
-CMD ["node", "packages/backend", "--config", "app-config.production.yaml"]
+CMD ["node", "packages/backend", "--config", "app-config.yaml"]
