@@ -67,10 +67,10 @@ jobs:
         run: | 
           ls
 
-      - name: Replace environment variables in app-config.production.yaml
-        working-directory: ./backstage
-        run: |
-          bash replace_env_vars.sh app-config.yaml POSTGRES_HOST=${{ env.POSTGRES_HOST }} POSTGRES_USER=${{ env.POSTGRES_USER }} POSTGRES_PORT=${{ env.POSTGRES_PORT }} POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} BASE_URL=${{ env.BASE_URL }}
+      # - name: Replace environment variables in app-config.production.yaml
+      #   working-directory: ./backstage
+      #   run: |
+      #     bash replace_env_vars.sh app-config.yaml POSTGRES_HOST=${{ env.POSTGRES_HOST }} POSTGRES_USER=${{ env.POSTGRES_USER }} POSTGRES_PORT=${{ env.POSTGRES_PORT }} POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} BASE_URL=${{ env.BASE_URL }}
                 
 
       - name: Install yarn
