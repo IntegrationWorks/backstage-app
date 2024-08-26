@@ -12,19 +12,19 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  baseUrl: http://localhost:7007
-  listen:
-    port: 7007
-    # Uncomment the following host directive to bind to specific interfaces
-    # host: 127.0.0.1
+  # baseUrl: http://localhost:7007
+  # listen:
+  #   port: 7007
+  # Uncomment the following host directive to bind to specific interfaces
+  # host: 127.0.0.1
   csp:
     connect-src: ["'self'", "http:", "https:"]
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
-  cors:
-    origin: http://localhost:3000
-    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
-    credentials: true
+  # cors:
+  #   origin: http://localhost:3000
+  #   methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+  #   credentials: true
   # This is for local development only, it is not recommended to use this in production
   # The production database configuration is stored in app-config.production.yaml
 
@@ -59,23 +59,28 @@ techdocs:
   publisher:
     type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
-auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
-  experimentalExtraAllowedOrigins: ['https://${dns_fqdn}', 'https://${dns_fqdn}:443', 'https://${dns_fqdn}:8443']
-  environment: production
-  providers:
-    # See https://backstage.io/docs/auth/guest/provider
-    github:
-      production:
-        clientId:
-          $include: github-credentials.yaml#clientId
-        clientSecret:
-          $include: github-credentials.yaml#clientSecret
-        signIn:
-          resolvers:
-            # Matches the GitHub username with the Backstage user entity name.
-            # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
-            - resolver: usernameMatchingUserEntityName
+# auth:
+#   # see https://backstage.io/docs/auth/ to learn about auth providers
+#   experimentalExtraAllowedOrigins:
+#     [
+#       "https://${dns_fqdn}",
+#       "https://${dns_fqdn}:443",
+#       "https://${dns_fqdn}:8443",
+#     ]
+#   environment: production
+#   providers:
+#     # See https://backstage.io/docs/auth/guest/provider
+#     github:
+#       production:
+#         clientId:
+#           $include: github-credentials.yaml#clientId
+#         clientSecret:
+#           $include: github-credentials.yaml#clientSecret
+#         signIn:
+#           resolvers:
+#             # Matches the GitHub username with the Backstage user entity name.
+#             # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
+#             - resolver: usernameMatchingUserEntityName
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
