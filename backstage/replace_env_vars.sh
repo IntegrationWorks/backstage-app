@@ -7,8 +7,8 @@ replace_substrings() {
   for pair in "$@"; do
     var="${pair%%=*}"
     value="${pair#*=}"
-    # Use sed to replace all instances of the substring
-    text=$(printf '%s\n' "$text" | sed "s#${var}#${value//\\/\\\\}#g")
+    # Use sed to replace all instances of the substring, including the ${}
+    text=$(printf '%s\n' "$text" | sed "s#\${${var}}#${value//\\/\\\\}#g")
   done
   echo "$text"
 }
@@ -45,8 +45,5 @@ replaced_content=$(replace_substrings "$content" "${env_vars[@]}")
 
 # Write back to the file (consider backup if needed)
 echo "$replaced_content" > "$filename"
-
-echo "Successfully replaced substrings in '$filename'."
-echo "$replaced_content"
 
 echo "Successfully replaced substrings in '$filename'."
