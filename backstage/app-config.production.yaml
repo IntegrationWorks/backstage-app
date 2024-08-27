@@ -85,29 +85,24 @@ catalog:
           frequency: { minutes: 30 }
           # supports ISO duration, "human duration" as used in code
           timeout: { minutes: 3 }
-auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
-  experimentalExtraAllowedOrigins:
-    [
-      "${BASE_URL}",
-      "${BASE_URL}:443",
-      "${BASE_URL}:8443",
-      "http://localhost:7007",
-    ]
-  environment: production
-  providers:
-    # See https://backstage.io/docs/auth/guest/provider
-    github:
-      production:
-        clientId:
-          $include: github-credentials.yaml#clientId
-        clientSecret:
-          $include: github-credentials.yaml#clientSecret
-        signIn:
-          resolvers:
-            # Matches the GitHub username with the Backstage user entity name.
-            # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
-            - resolver: usernameMatchingUserEntityName
+# auth:
+#   # see https://backstage.io/docs/auth/ to learn about auth providers
+#   experimentalExtraAllowedOrigins:
+#     ["${BASE_URL}", "${BASE_URL}:443", "${BASE_URL}:8443"]
+#   environment: production
+#   providers:
+#     # See https://backstage.io/docs/auth/guest/provider
+#     github:
+#       production:
+#         clientId:
+#           $include: github-credentials.yaml#clientId
+#         clientSecret:
+#           $include: github-credentials.yaml#clientSecret
+#         signIn:
+#           resolvers:
+#             # Matches the GitHub username with the Backstage user entity name.
+#             # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
+#             - resolver: usernameMatchingUserEntityName
 
 integrations:
   github:
