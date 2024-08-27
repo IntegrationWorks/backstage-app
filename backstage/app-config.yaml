@@ -59,7 +59,11 @@ techdocs:
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   experimentalExtraAllowedOrigins:
-    ["${BASE_URL}", "${BASE_URL}:443", "${BASE_URL}:8443"]
+    [
+      "https://backstage.integration.works",
+      "https://backstage.integration.works:443",
+      "https://backstage.integration.works:8443",
+    ]
   environment: production
   providers:
     # See https://backstage.io/docs/auth/guest/provider
