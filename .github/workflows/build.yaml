@@ -90,7 +90,7 @@ jobs:
         working-directory: ./backstage
         run: |
           # Build backend
-
+          echo $POSTGRES_PORT
           yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
 
       - name: Docker Login
