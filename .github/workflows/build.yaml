@@ -66,6 +66,10 @@ jobs:
         working-directory: ./backstage
         run: | 
           ls
+      - name: Replace environment variables in app-config.yaml
+        working-directory: ./backstage
+        run: |
+          bash replace_env_vars.sh app-config.yaml BASE_URL=${{ env.BASE_URL }}
 
       - name: Replace environment variables in app-config.production.yaml
         working-directory: ./backstage

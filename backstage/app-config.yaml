@@ -1,6 +1,6 @@
 app:
   title: Developer Portal
-  baseUrl: https://backstage.integration.works
+  baseUrl: ${BASE_URL}
 
 organization:
   name: IntegrationWorks
@@ -12,7 +12,7 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  baseUrl: https://backstage.integration.works
+  baseUrl: ${BASE_URL}
   listen:
     port: 7007
     # Uncomment the following host directive to bind to specific interfaces
@@ -22,7 +22,7 @@ backend:
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   cors:
-    origin: https://backstage.integration.works
+    origin: ${BASE_URL}
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
   # This is for local development only, it is not recommended to use this in production
@@ -60,9 +60,9 @@ auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   experimentalExtraAllowedOrigins:
     [
-      "https://backstage.integration.works",
-      "https://backstage.integration.works:443",
-      "https://backstage.integration.works:8443",
+      "${BASE_URL}",
+      "${BASE_URL}:443",
+      "${BASE_URL}:8443",
     ]
   environment: production
   providers:
