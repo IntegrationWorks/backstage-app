@@ -100,9 +100,9 @@ auth:
     github:
       production:
         clientId:
-          - $include: github-credentials.yaml#clientId
+          $include: github-credentials.yaml#clientId
         clientSecret:
-          - $include: github-credentials.yaml#clientSecret
+          $include: github-credentials.yaml#clientSecret
         signIn:
           resolvers:
             # Matches the GitHub username with the Backstage user entity name.
