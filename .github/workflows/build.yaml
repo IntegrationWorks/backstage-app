@@ -29,6 +29,8 @@ jobs:
       AUTH_ORG_PRIVATE_KEY: ${{secrets.AUTH_ORG_PRIVATE_KEY}}
       AUTH_ORG_WEBHOOK_SECRET: ${{secrets.AUTH_ORG_WEBHOOK_SECRET}}
       AUTH_ORG_WEBHOOK_URL: ${{secrets.AUTH_ORG_WEBHOOK_URL}}
+      AZURE_AUTH_CLIENT_ID: ${{secrets.AZURE_AUTH_CLIENT_ID}}
+      AZURE_AUTH_CLIENT_SECRET: ${{secrets.AZURE_AUTH_CLIENT_SECRET}}
       BASE_URL: ${{secrets.BASE_URL}}
 
 
@@ -69,7 +71,7 @@ jobs:
       - name: Replace environment variables in app-config.yaml
         working-directory: ./backstage
         run: |
-          bash replace_env_vars.sh app-config.yaml BASE_URL=${{ env.BASE_URL }}
+          bash replace_env_vars.sh app-config.yaml BASE_URL=${{ env.BASE_URL }} AZURE_TENANT_ID=${{env.ARM_TENANT_ID}} AZURE_CLIENT_ID=${{env.AZURE_AUTH_CLIENT_ID}} AZURE_CLIENT_SECRET=${{env.AZURE_AUTH_CLIENT_SECRET}}
 
       - name: Replace environment variables in app-config.production.yaml
         working-directory: ./backstage

@@ -37,6 +37,7 @@ import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
+import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
 const app = createApp({
   apis,
   bindRoutes({ bind }) {
@@ -61,12 +62,19 @@ const app = createApp({
       <SignInPage
         {...props}
         auto
-        provider={{
+        providers={[{
           id: 'github-auth-provider',
           title: 'GitHub',
           message: 'Sign in using GitHub',
           apiRef: githubAuthApiRef,
-        }}
+        },
+        {
+          id: 'microsoft-auth-provider',
+          title: 'Azure',
+          message: 'Sign in using Azure',
+          apiRef: microsoftAuthApiRef,
+        }
+        ]}
       />
     ),
   },

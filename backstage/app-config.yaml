@@ -59,11 +59,7 @@ techdocs:
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   experimentalExtraAllowedOrigins:
-    [
-      "${BASE_URL}",
-      "${BASE_URL}:443",
-      "${BASE_URL}:8443",
-    ]
+    ["${BASE_URL}", "${BASE_URL}:443", "${BASE_URL}:8443"]
   environment: production
   providers:
     # See https://backstage.io/docs/auth/guest/provider
@@ -78,6 +74,15 @@ auth:
             # Matches the GitHub username with the Backstage user entity name.
             # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
             - resolver: usernameMatchingUserEntityName
+    microsoft:
+      production:
+        clientId: ${AZURE_CLIENT_ID}
+        clientSecret: ${AZURE_CLIENT_SECRET}
+        tenantId: ${AZURE_TENANT_ID}
+        signIn:
+          resolvers:
+            - resolver: emailMatchingUserEntityProfileEmail
+
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
@@ -95,6 +100,12 @@ catalog:
         schedule:
           frequency: PT45M
           timeout: PT3M
+    microsoftGraphOrg:
+      default:
+        tenantId: ${AZURE_TENANT_ID}
+        schedule:
+          frequency: PT1H
+          timeout: PT50M
     github:
       providerId:
         organization: "IntegrationWorks"
