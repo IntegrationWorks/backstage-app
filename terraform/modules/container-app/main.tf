@@ -25,8 +25,7 @@ resource "azurerm_container_app" "this" {
       cpu    = 0.25
       memory = "0.5Gi"
     }
-
-
+    min_replicas = 1
 
   }
 
