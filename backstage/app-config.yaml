@@ -109,7 +109,7 @@ catalog:
     github:
       providerId:
         organization: "IntegrationWorks"
-        catalogPath: "/catalog-info.yaml" # string
+
         filters:
           branch: "main" # string
           repository: "backstage-templates" # Regex
