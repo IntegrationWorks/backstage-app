@@ -27,6 +27,9 @@ jobs:
       # Terraform variables
       TF_VAR_nginx_container_image_name: ${{ secrets.AZURE_REPO_URL }}/nginx:latest
       TF_VAR_backstage_container_image_name: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
+      TF_VAR_dns_zone_name: ${{secrets.DNS_ZONE_NAME}}
+      TF_VAR_cname_record_name: ${{secrets.CNAME_RECORD_NAME}}
+      TF_VAR_txt_record_name: ${{secrets.TXT_RECORD_NAME}}
       
 
     runs-on: ubuntu-latest

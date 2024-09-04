@@ -32,3 +32,15 @@ variable "backstage_container_image_name" {
   description = "Name of the Backstage container image includes acr repo name"
 }
 
+variable "dns_zone_name" {
+  description = "Name of an existing DNS zone"
+}
+
+variable "txt_record_name" {
+  description = "Name of the existing txt record "
+}
+
+variable "cname_record_name" {
+  description = "Name of the existing CName record for for the Nginx application"
+
+}

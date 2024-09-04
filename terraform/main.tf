@@ -53,3 +53,66 @@ module "backstage" {
   identity_id          = data.azurerm_user_assigned_identity.this.id
   acr_server           = data.azurerm_container_registry.acr.login_server
 }
+
+
+data "azurerm_dns_zone" "this" {
+  name = var.dns_zone_name
+}
+
+
+data "azurerm_dns_txt_record" "this" {
+  name                = var.txt_record_name
+  resource_group_name = data.azurerm_resource_group.this.name
+  zone_name           = data.azurerm_dns_zone.this.name
+}
+
+
+resource "azurerm_dns_cname_record" "this" {
+  name                = var.cname_record_name
+  resource_group_name = data.azurerm_resource_group.this
+  zone_name           = var.dns_zone_name
+  ttl                 = 300
+  record              = module.nginx.output.fqdn
+}
+
+data "azapi_resource" "app_verification_id" {
+  resource_id = data.azurerm_container_app_environment.this.id
+  type        = "Microsoft.App/managedEnvironments@2024-03-01"
+
+  response_export_values = ["properties.customDomainConfiguration.customDomainVerificationId"]
+}
+
+locals {
+  verificationId = jsondecode(data.azapi_resource.app_verification_id.output).properties.customDomainConfiguration.customDomainVerificationId
+}
+
+
+resource "time_sleep" "dns_propagation" {
+  create_duration = "60s"
+
+  depends_on = [data.azurerm_dns_txt_record.this, azurerm_dns_cname_record.this]
+
+  triggers = {
+    url            = "${azurerm_dns_cname_record.this.name}.${data.azurerm_dns_zone.dns.name}",
+    verificationId = local.verificationId,
+    record         = azurerm_dns_cname_record.this.record,
+  }
+}
+
+resource "azapi_update_resource" "custom_domain" {
+  type        = "Microsoft.App/containerApps@2024-03-01"
+  resource_id = module.nginx.output.id
+
+  body = jsonencode({
+    properties = {
+      ingress = {
+        customDomains = [
+          {
+            bindingType = "Disabled",
+            name        = time_sleep.dns_propagation.triggers["url"],
+          }
+        ]
+      }
+    }
+  })
+}
