@@ -101,7 +101,7 @@ resource "time_sleep" "dns_propagation" {
 
 resource "azapi_update_resource" "custom_domain" {
   type        = "Microsoft.App/containerApps@2024-03-01"
-  resource_id = module.nginx.output.id
+  resource_id = module.nginx.id
 
   body = jsonencode({
     properties = {
