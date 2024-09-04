@@ -72,7 +72,7 @@ resource "azurerm_dns_cname_record" "this" {
   resource_group_name = data.azurerm_resource_group.this
   zone_name           = var.dns_zone_name
   ttl                 = 300
-  record              = module.nginx.output.fqdn
+  record              = module.nginx.fqdn
 }
 
 data "azapi_resource" "app_verification_id" {
