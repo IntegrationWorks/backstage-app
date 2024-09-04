@@ -26,7 +26,7 @@ resource "azurerm_container_app" "this" {
       memory = "0.5Gi"
     }
     min_replicas = 1
-
+    max_replicas = 1
   }
 
 
@@ -40,4 +40,13 @@ resource "azurerm_container_app" "this" {
       latest_revision = true
     }
   }
+
+  lifecycle {
+    ignore_changes = [ingress.0.custom_domain] // Required to not delete the custom domain created in dns.tf
+  }
+}
+
+
+output "id" {
+  value = azurerm_container_app.this.id
 }
