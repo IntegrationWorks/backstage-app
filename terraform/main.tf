@@ -93,7 +93,7 @@ resource "time_sleep" "dns_propagation" {
   depends_on = [data.azurerm_dns_txt_record.this, azurerm_dns_cname_record.this]
 
   triggers = {
-    url            = "${azurerm_dns_cname_record.this.name}.${data.azurerm_dns_zone.dns.name}",
+    url            = "${azurerm_dns_cname_record.this.name}.${data.azurerm_dns_zone.this.name}",
     verificationId = local.verificationId,
     record         = azurerm_dns_cname_record.this.record,
   }
