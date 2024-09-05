@@ -62,15 +62,15 @@ data "azurerm_dns_zone" "this" {
 
 data "azurerm_dns_txt_record" "this" {
   name                = var.txt_record_name
-  resource_group_name = data.azurerm_resource_group.this.name
+  resource_group_name = var.dns_resource_group_name
   zone_name           = data.azurerm_dns_zone.this.name
 }
 
 
 resource "azurerm_dns_cname_record" "this" {
   name                = var.cname_record_name
-  resource_group_name = data.azurerm_resource_group.this.name
-  zone_name           = var.dns_zone_name
+  resource_group_name = var.dns_resource_group_name
+  zone_name           = data.azurerm_dns_zone.this.name
   ttl                 = 300
   record              = module.nginx.fqdn
 }

@@ -30,6 +30,7 @@ jobs:
       TF_VAR_dns_zone_name: ${{secrets.DNS_ZONE_NAME}}
       TF_VAR_cname_record_name: ${{secrets.CNAME_RECORD_NAME}}
       TF_VAR_txt_record_name: ${{secrets.TXT_RECORD_NAME}}
+      TF_VAR_dns_resource_group_name: ${{secrets.DNS_RESOURCE_GROUP_NAME}}
       
 
     runs-on: ubuntu-latest

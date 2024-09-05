@@ -44,3 +44,7 @@ variable "cname_record_name" {
   description = "Name of the existing CName record for for the Nginx application"
 
 }
+
+variable "dns_resource_group_name" {
+  description = "Name of the resource group which contains the DNS Zone"
+}
