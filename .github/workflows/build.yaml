@@ -124,3 +124,6 @@ jobs:
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/nginx:latest
           file: nginx/Dockerfile
+          build-args: |
+            HOSTNAME=${{secrets.BASE_URL}}
+
