@@ -38,8 +38,21 @@ import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
+import { UnifiedThemeProvider } from '@backstage/theme';
+import { myTheme } from './theme/myTheme';
+
 const app = createApp({
   apis,
+  themes: [{
+    id: 'my-theme',
+    title: 'My Custom Theme',
+    variant: 'dark',
+
+    Provider: ({ children }) => (
+      <UnifiedThemeProvider theme={myTheme} children={children} />
+    ),
+  }]
+  ,
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
       createComponent: scaffolderPlugin.routes.root,
@@ -78,6 +91,7 @@ const app = createApp({
       />
     ),
   },
+
 });
 
 const routes = (
