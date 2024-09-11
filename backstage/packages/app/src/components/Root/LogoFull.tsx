@@ -15,4 +15,4 @@ const LogoFull = () => {
 };
 
 
-export default LogoFull
+export default LogoFull;

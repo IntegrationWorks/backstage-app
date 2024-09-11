@@ -4,7 +4,7 @@ import CustomLogoSQ from './logo/Fusion5_B3_SQ-Dark.400px.png';
 const useStyles = makeStyles({
   img: {
     width: 'auto',
-    height: 28,
+    height: 35,
   },
 
 });
