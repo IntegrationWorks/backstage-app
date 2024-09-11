@@ -56,7 +56,6 @@ import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
 import {
   EntityGithubActionsContent,
-  isGithubActionsAvailable,
 } from '@backstage-community/plugin-github-actions';
 
 const techdocsContent = (
