@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
   img: {
     width: 'auto',
-    height: 30,
+    minWidth: 100,
+    height: 'auto'
   },
   path: {
     fill: '#7df3e1',
