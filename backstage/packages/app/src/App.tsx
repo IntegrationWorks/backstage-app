@@ -19,7 +19,7 @@ import {
   TechDocsReaderPage,
 } from '@backstage/plugin-techdocs';
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
-import { homePage } from './components/home/HomePage';
+import { HomePage } from './components/home/HomePage';
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 import { UserSettingsPage } from '@backstage/plugin-user-settings';
@@ -98,10 +98,10 @@ const app = createApp({
 
 const routes = (
   <FlatRoutes>
-    <Route path="/" element={<HomepageCompositionRoot />}>
-      {homePage}
+    <Route path="/" element={<Navigate to="home" />} />
+    <Route path="home/" element={<HomepageCompositionRoot />}>
+      <HomePage /> 
     </Route>;
-    <Route path="/" element={<Navigate to="catalog" />} />
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
