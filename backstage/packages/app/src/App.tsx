@@ -32,7 +32,6 @@ import {
   SignInPage,
 } from '@backstage/core-components';
 
-import githubActionsPlugin from '@backstage-community/plugin-github-actions/alpha';
 import { createApp } from '@backstage/app-defaults';
 import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
