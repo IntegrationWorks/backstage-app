@@ -1,7 +1,13 @@
 app:
   title: Developer Portal
   baseUrl: ${BASE_URL}
-
+  extensions:
+    - entity-content:github-actions/entity
+    - entity-card:github-actions/latest-workflow-run
+    - entity-card:github-actions/latest-branch-workflow-runs
+    - entity-card:github-actions/recent-workflow-runs:
+        config:
+          filter: kind:component,api,group
 organization:
   name: Fusion5
 
@@ -32,6 +38,7 @@ integrations:
     - host: github.com
       apps:
         - $include: github-credentials.yaml
+
     ### Example for how to add your GitHub Enterprise instance using the API:
     # - host: ghe.example.net
     #   apiBaseUrl: https://ghe.example.net/api/v3
