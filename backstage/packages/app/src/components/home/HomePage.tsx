@@ -1,6 +1,6 @@
-import { Content, ContentHeader } from '@backstage/core-components';
-import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import { Typography, Grid, Box, makeStyles } from '@material-ui/core'; 
+import { Content, ContentHeader } from '@backstage/core-components';
 
 const useStyles = makeStyles({
   welcomeMessage: {
