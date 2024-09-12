@@ -28,7 +28,6 @@ export const myTheme = createUnifiedTheme({
 
         },
     }),
-    fontFamily: 'Calibri',
     defaultPageTheme: 'home',
     pageTheme: {
         home: genPageTheme({ colors: ['#FD7B23', '#3A444A'], shape: shapes.wave }),
