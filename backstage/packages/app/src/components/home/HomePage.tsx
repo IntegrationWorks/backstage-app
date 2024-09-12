@@ -28,7 +28,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(4),
   },
   button: {
-    marginRight: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: theme.spacing(2),
+    width: '200px', 
+    height: '150px'
   },
   toolbox: {
     padding: theme.spacing(2),
@@ -56,22 +62,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     margin: theme.spacing(2),
   },
-  // button: {
-  //   color: '#FD7B23',
-  //   margin: theme.spacing(2),
-  //   width: '100%',
-  //   height: '100%',
-  //   minWidth: '150px',
-  //   maxWidth: '250px',
-  //   minHeight: '150px',
-  //   maxHeight: '250px',
-  //   fontSize: '1.2rem',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   padding: theme.spacing(2),
-  // },
   icon: {
     fontSize: '3rem',
     marginBottom: theme.spacing(1),
@@ -84,71 +74,66 @@ export const HomePage = () => {
 
   return (
     <Box className={classes.root}>
-      {/* Personalized Greeting */}
       <Box className={classes.greeting}>
-        <Typography variant="h4">Welcome</Typography>
-        <Typography variant="body1">Part of the solution</Typography>
+        <Typography variant="h4">Fusion5 Developer Portal</Typography>
       </Box>
 
-      {/* Welcome Block */}
       <Card className={classes.welcomeBlock}>
         <CardContent>
           <Typography variant="h5" gutterBottom>Welcome to Backstage!</Typography>
           <Typography variant="body1" paragraph>
-            Backstage is a tool used for quick repository creation through high quality, standardized templates.
+            Backstage is a tool used for efficient repository creation through high quality, standardized templates.
           </Typography>
-          <Button className={classes.button} variant="contained" color="primary">Getting Started</Button>
-          <Button className={classes.button} variant="outlined">Open Tour</Button>
         </CardContent>
       </Card>
 
-      {/* Developer Toolbox */}
-      <Card className={classes.toolbox}>
-        <CardContent>
-          <Typography variant="h5" gutterBottom>Developer Toolbox</Typography>
-          <Grid container justify="center">
-            <Grid item>
-              <Button href="https://github.com/IntegrationWorks" className={classes.iconButton}>
-                <GitHubIcon fontSize="large" />
-                <Typography>GitHub</Typography>
-              </Button>
+      <Grid container spacing={4} className={classes.buttonGrid}>
+        <Card className={classes.toolbox}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>Developer Toolbox</Typography>
+            <Grid container justify="center">
+              <Grid item>
+                <Button href="https://github.com/IntegrationWorks" className={classes.iconButton}>
+                  <GitHubIcon fontSize="large" />
+                  <Typography>GitHub</Typography>
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button href="https://aws.amazon.com/" className={classes.iconButton}>
+                  <CloudIcon fontSize="large" />
+                  <Typography>AWS</Typography>
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button href="https://portal.azure.com/" className={classes.iconButton}>
+                  <FontDownloadIcon fontSize="large" />
+                  <Typography>Azure</Typography>
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Button href="https://aws.amazon.com/" className={classes.iconButton}>
-                <CloudIcon fontSize="large" />
-                <Typography>Azure</Typography>
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button href="https://portal.azure.com/" className={classes.iconButton}>
-                <FontDownloadIcon fontSize="large" />
-                <Typography>Azure</Typography>
-              </Button>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-      {/* Backstage links */}
-      <Card className={classes.toolbox}>
-        <CardContent>
-          <Typography variant="h5" gutterBottom>Developer Toolbox</Typography>
-          <Grid container justify="center">
-            <Grid item>
-              <Button href="https://github.com/IntegrationWorks/backstage-templates" className={classes.iconButton}>
-                <BuildIcon fontSize="large" />
-                <Typography>Backstage Templates</Typography>
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button href="https://github.com/IntegrationWorks/github-actions-templates" className={classes.iconButton}>
-                <ListIcon fontSize="large" />
-                <Typography>GitHub Actions Templates</Typography>
-              </Button>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
+        <Card className={classes.toolbox}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>Template Sources</Typography>
+            <Grid container justify="center">
+              <Grid item>
+                <Button href="https://github.com/IntegrationWorks/backstage-templates" className={classes.iconButton}>
+                  <BuildIcon fontSize="large" />
+                  <Typography>Backstage</Typography>
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button href="https://github.com/IntegrationWorks/github-actions-templates" className={classes.iconButton}>
+                  <ListIcon fontSize="large" />
+                  <Typography>GitHub Actions</Typography>
+                </Button>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
       <Grid container spacing={4} className={classes.buttonGrid}>
           <Grid item>
             <Button
