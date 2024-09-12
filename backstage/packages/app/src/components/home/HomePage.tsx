@@ -28,22 +28,28 @@ const useStyles = makeStyles((theme) => ({
   buttonGrid: {
     display: 'flex',
     justifyContent: 'center',
+    margin: theme.spacing(2),
   },
   button: {
     color: '#FD7B23',
     margin: theme.spacing(2),
-    width: '200px',
-    height: '200px',
+    width: '100%',
+    height: '100%',
+    minWidth: '150px',
+    maxWidth: '250px',
+    minHeight: '150px',
+    maxHeight: '250px',
     fontSize: '1.2rem',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: theme.spacing(2),
   },
   icon: {
     fontSize: '3rem',
     marginBottom: theme.spacing(1),
-    color: '#FD7B23',
+    color: '#FFFFFF',
   },
 }));
 
@@ -52,7 +58,7 @@ export const HomePage = () => {
 
   return (
     <Content>
-      <ContentHeader title="Welcome to Your Application">
+      <ContentHeader title="Fusion5 Developer Portal">
       </ContentHeader>
       <Box className={classes.root}>
         <Typography className={classes.welcomeMessage} variant="h3" component="h1">
@@ -106,7 +112,7 @@ export const HomePage = () => {
               className={classes.button}
               variant="contained"
               color="primary"
-              href="/apis"
+              href="/api-docs"
             >
               <ExtensionIcon className={classes.icon} />
               APIs
