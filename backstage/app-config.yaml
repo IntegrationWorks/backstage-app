@@ -95,7 +95,7 @@ scaffolder:
 
 catalog:
   # orphanStrategy: delete
-  processingInterval: { minutes: 45 }
+  processingInterval: { minutes: 5 }
   rules:
     - allow: [Component, System, API, Resource, Location, Template]
   locations: []
