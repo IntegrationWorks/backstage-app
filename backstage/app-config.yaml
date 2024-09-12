@@ -116,9 +116,9 @@ catalog:
     github:
       providerId:
         organization: "IntegrationWorks"
-        catalogPath: "*/catalog-info.yaml" # string
-        # filters:
-        #   branch: "main" # string
+        catalogPath: "**/catalog-info.yaml" # string
+        filters:
+          branch: "main" # string
         #   repository: "backstage-templates" # Regex
         schedule: # same options as in SchedulerServiceTaskScheduleDefinition
           # supports cron, ISO duration, "human duration" as used in code
