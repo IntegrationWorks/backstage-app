@@ -1,5 +1,5 @@
 app:
-  title: Developer Portal
+  title: Fusion5 Developer Portal
   baseUrl: ${BASE_URL}
   extensions:
     - entity-content:github-actions/entity
