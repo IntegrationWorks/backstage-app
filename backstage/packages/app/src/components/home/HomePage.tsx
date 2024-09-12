@@ -83,7 +83,52 @@ export const HomePage = () => {
           </Typography>
         </CardContent>
       </Card>
-
+      <Grid container spacing={4} className={classes.buttonGrid}>
+          <Grid item>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              href="/catalog"
+            >
+              <MenuBookIcon className={classes.icon} />
+              Catalog
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              href="/api-docs"
+            >
+              <ExtensionIcon className={classes.icon} />
+               APIs
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              href="/docs"
+            >
+              <LibraryBooksIcon className={classes.icon} />
+               Documentation
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              href="/create"
+            >
+              <CreateIcon className={classes.icon} />
+               Create
+            </Button>
+          </Grid>
+        </Grid>
       <Grid container spacing={4} className={classes.buttonGrid}>
         <Card className={classes.toolbox}>
           <CardContent>
@@ -132,52 +177,6 @@ export const HomePage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid container spacing={4} className={classes.buttonGrid}>
-          <Grid item>
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              href="/catalog"
-            >
-              <MenuBookIcon className={classes.icon} />
-              Catalog
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              href="/docs"
-            >
-              <LibraryBooksIcon className={classes.icon} />
-               Documentation
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              href="/create"
-            >
-              <CreateIcon className={classes.icon} />
-               Create
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              href="/api-docs"
-            >
-              <ExtensionIcon className={classes.icon} />
-               APIs
-            </Button>
-          </Grid>
-        </Grid>
     </Box>
   );
 };
