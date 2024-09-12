@@ -1,9 +1,12 @@
 import React from 'react';
-import { Typography, Grid, Box, Button } from '@material-ui/core';
-import { Content, ContentHeader} from '@backstage/core-components';
-import { makeStyles } from '@material-ui/core';
+import { Grid, Typography, Box, Button, Card, CardContent, makeStyles } from '@material-ui/core';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import CloudIcon from '@material-ui/icons/Cloud';
+import FontDownloadIcon from '@material-ui/icons/FontDownload';
+import BuildIcon from '@material-ui/icons/Build';
+import ListIcon from '@material-ui/icons/List';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import CategoryIcon from '@material-ui/icons/Category';
 import CreateIcon from '@material-ui/icons/Create';
 import ExtensionIcon from '@material-ui/icons/Extension';
 
@@ -12,6 +15,29 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     marginTop: theme.spacing(8),
   },
+  greeting: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    padding: theme.spacing(2),
+    borderRadius: theme.shape.borderRadius,
+    textAlign: 'center',
+    marginBottom: theme.spacing(4),
+  },
+  welcomeBlock: {
+    padding: theme.spacing(2),
+    marginBottom: theme.spacing(4),
+  },
+  button: {
+    marginRight: theme.spacing(2),
+  },
+  toolbox: {
+    padding: theme.spacing(2),
+  },
+  iconButton: {
+    margin: theme.spacing(1),
+    fontSize: '2rem',
+  },
+
   welcomeMessage: {
     color: '#FD7B23',
     fontWeight: 600,
@@ -30,22 +56,22 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     margin: theme.spacing(2),
   },
-  button: {
-    color: '#FD7B23',
-    margin: theme.spacing(2),
-    width: '100%',
-    height: '100%',
-    minWidth: '150px',
-    maxWidth: '250px',
-    minHeight: '150px',
-    maxHeight: '250px',
-    fontSize: '1.2rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: theme.spacing(2),
-  },
+  // button: {
+  //   color: '#FD7B23',
+  //   margin: theme.spacing(2),
+  //   width: '100%',
+  //   height: '100%',
+  //   minWidth: '150px',
+  //   maxWidth: '250px',
+  //   minHeight: '150px',
+  //   maxHeight: '250px',
+  //   fontSize: '1.2rem',
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   padding: theme.spacing(2),
+  // },
   icon: {
     fontSize: '3rem',
     marginBottom: theme.spacing(1),
@@ -57,20 +83,73 @@ export const HomePage = () => {
   const classes = useStyles();
 
   return (
-    <Content>
-      <ContentHeader title="Fusion5 Developer Portal">
-      </ContentHeader>
-      <Box className={classes.root}>
-        <Typography className={classes.welcomeMessage} variant="h3" component="h1">
-          Welcome to the Developer Portal
-        </Typography>
-        <Typography className={classes.description} variant="body1" component="p">
-          This is a developer portal for managing your infrastructure and
-          developer tooling. Explore the features, manage your services, and
-          find documentation on how to use the platform.
-        </Typography>
-        
-        <Grid container spacing={4} className={classes.buttonGrid}>
+    <Box className={classes.root}>
+      {/* Personalized Greeting */}
+      <Box className={classes.greeting}>
+        <Typography variant="h4">Welcome</Typography>
+        <Typography variant="body1">Part of the solution</Typography>
+      </Box>
+
+      {/* Welcome Block */}
+      <Card className={classes.welcomeBlock}>
+        <CardContent>
+          <Typography variant="h5" gutterBottom>Welcome to Backstage!</Typography>
+          <Typography variant="body1" paragraph>
+            Backstage is a tool used for quick repository creation through high quality, standardized templates.
+          </Typography>
+          <Button className={classes.button} variant="contained" color="primary">Getting Started</Button>
+          <Button className={classes.button} variant="outlined">Open Tour</Button>
+        </CardContent>
+      </Card>
+
+      {/* Developer Toolbox */}
+      <Card className={classes.toolbox}>
+        <CardContent>
+          <Typography variant="h5" gutterBottom>Developer Toolbox</Typography>
+          <Grid container justify="center">
+            <Grid item>
+              <Button href="https://github.com/IntegrationWorks" className={classes.iconButton}>
+                <GitHubIcon fontSize="large" />
+                <Typography>GitHub</Typography>
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button href="https://aws.amazon.com/" className={classes.iconButton}>
+                <CloudIcon fontSize="large" />
+                <Typography>Azure</Typography>
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button href="https://portal.azure.com/" className={classes.iconButton}>
+                <FontDownloadIcon fontSize="large" />
+                <Typography>Azure</Typography>
+              </Button>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+      {/* Backstage links */}
+      <Card className={classes.toolbox}>
+        <CardContent>
+          <Typography variant="h5" gutterBottom>Developer Toolbox</Typography>
+          <Grid container justify="center">
+            <Grid item>
+              <Button href="https://github.com/IntegrationWorks/backstage-templates" className={classes.iconButton}>
+                <BuildIcon fontSize="large" />
+                <Typography>Backstage Templates</Typography>
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button href="https://github.com/IntegrationWorks/github-actions-templates" className={classes.iconButton}>
+                <ListIcon fontSize="large" />
+                <Typography>GitHub Actions Templates</Typography>
+              </Button>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+
+      <Grid container spacing={4} className={classes.buttonGrid}>
           <Grid item>
             <Button
               className={classes.button}
@@ -78,8 +157,8 @@ export const HomePage = () => {
               color="primary"
               href="/catalog"
             >
-              <CategoryIcon className={classes.icon} />
-              Catalog
+              <MenuBookIcon className={classes.icon} />
+              Catalogue
             </Button>
           </Grid>
           <Grid item>
@@ -119,7 +198,6 @@ export const HomePage = () => {
             </Button>
           </Grid>
         </Grid>
-      </Box>
-    </Content>
+    </Box>
   );
 };
