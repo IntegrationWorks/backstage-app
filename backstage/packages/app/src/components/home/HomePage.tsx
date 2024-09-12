@@ -77,7 +77,7 @@ export const HomePage = () => {
 
       <Card className={classes.welcomeBlock}>
         <CardContent>
-          <Typography variant="h5" gutterBottom>Welcome to Backstage!</Typography>
+          <Typography variant="h2" gutterBottom>Welcome to Backstage!</Typography>
           <Typography variant="body1" paragraph>
             Backstage is a tool used for efficient repository creation through high quality, standardized templates.
           </Typography>
