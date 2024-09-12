@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     fontSize: '2rem',
   },
-
   h2: {
     color: '#FFFFFF',
     fontWeight: 600,
@@ -61,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   buttonGrid: {
     display: 'flex',
     justifyContent: 'center',
-    margin: theme.spacing(6),
+    margin: theme.spacing(2),
   },
   icon: {
     fontSize: '3rem',
@@ -75,9 +74,6 @@ export const HomePage = () => {
 
   return (
     <Box className={classes.root}>
-      <Box className={classes.greeting}>
-        <h2>Fusion5 Developer Portal</h2>
-      </Box>
 
       <Card className={classes.welcomeBlock}>
         <CardContent>
@@ -89,54 +85,52 @@ export const HomePage = () => {
       </Card>
 
       <Grid container spacing={4} className={classes.buttonGrid}>
-        <Grid item>
-          <Card className={classes.toolbox}>
-            <CardContent>
-              <Typography variant="h5" gutterBottom>Developer Toolbox</Typography>
-              <Grid container justify="center">
-                <Grid item>
-                  <Button href="https://github.com/IntegrationWorks" className={classes.iconButton}>
-                    <GitHubIcon fontSize="large" />
-                    <Typography> GitHub</Typography>
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button href="https://aws.amazon.com/" className={classes.iconButton}>
-                    <CloudIcon fontSize="large" />
-                    <Typography> AWS</Typography>
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button href="https://portal.azure.com/" className={classes.iconButton}>
-                    <FontDownloadIcon fontSize="large" />
-                    <Typography> Azure</Typography>
-                  </Button>
-                </Grid>
+        <Card className={classes.toolbox}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>Developer Toolbox</Typography>
+            <Grid container justify="center">
+              <Grid item>
+                <Button href="https://github.com/IntegrationWorks" className={classes.iconButton}>
+                  <GitHubIcon fontSize="large" />
+                  <Typography> GitHub</Typography>
+                </Button>
               </Grid>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid>
-          <Card className={classes.toolbox}>
-            <CardContent>
-              <Typography variant="h5" gutterBottom>Template Sources</Typography>
-              <Grid container justify="center">
-                <Grid item>
-                  <Button href="https://github.com/IntegrationWorks/backstage-templates" className={classes.iconButton}>
-                    <BuildIcon fontSize="large" />
-                    <Typography> Backstage</Typography>
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button href="https://github.com/IntegrationWorks/github-actions-templates" className={classes.iconButton}>
-                    <ListIcon fontSize="large" />
-                    <Typography> GitHub Actions</Typography>
-                  </Button>
-                </Grid>
+              <Grid item>
+                <Button href="https://aws.amazon.com/" className={classes.iconButton}>
+                  <CloudIcon fontSize="large" />
+                  <Typography> AWS</Typography>
+                </Button>
               </Grid>
-            </CardContent>
-          </Card>
-        </Grid>
+              <Grid item>
+                <Button href="https://portal.azure.com/" className={classes.iconButton}>
+                  <FontDownloadIcon fontSize="large" />
+                  <Typography> Azure</Typography>
+                </Button>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid container spacing={4} className={classes.buttonGrid}>
+        <Card className={classes.toolbox}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>Template Sources</Typography>
+            <Grid container justify="center">
+              <Grid item>
+                <Button href="https://github.com/IntegrationWorks/backstage-templates" className={classes.iconButton}>
+                  <BuildIcon fontSize="large" />
+                  <Typography> Backstage</Typography>
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button href="https://github.com/IntegrationWorks/github-actions-templates" className={classes.iconButton}>
+                  <ListIcon fontSize="large" />
+                  <Typography> GitHub Actions</Typography>
+                </Button>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
       </Grid>
       <Grid container spacing={4} className={classes.buttonGrid}>
           <Grid item>
@@ -161,9 +155,6 @@ export const HomePage = () => {
                Documentation
             </Button>
           </Grid>
-        </Grid>
-
-        <Grid container spacing={4} className={classes.buttonGrid}>
           <Grid item>
             <Button
               className={classes.button}
