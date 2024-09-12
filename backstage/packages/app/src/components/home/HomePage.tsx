@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(4),
   },
   welcomeBlock: {
-    width: '12000px', 
+    width: '1200px', 
     padding: theme.spacing(2),
     marginBottom: theme.spacing(4),
   },
@@ -67,6 +67,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '3rem',
     marginBottom: theme.spacing(1),
     color: '#FFFFFF',
+    width: '500px', 
+    height: '250px',
   },
 }));
 
@@ -79,29 +81,33 @@ export const HomePage = () => {
       <Card className={classes.welcomeBlock}>
         <CardContent>
           <Typography variant="h2" gutterBottom>Welcome to Backstage!</Typography>
-
-          <Typography variant="body1" paragraph>
-            Backstage is a tool used for efficient repository creation through high quality, standardized templates.
-            Creating a repository using a template in Backstage is a streamlined process
-            that simplifies the setup of new projects.
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            To create a repo, navigate to the "Create" section in the Backstage
-            portal. Then select the appropriate pre-configured template that fits your project needs.
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            You will then be prompted to fill out a form with specific details like the project name,
-            repository location, and any necessary configuration options.
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            Once the form is submitted, Backstage automatically generates the new repository by cloning
-            the selected template and you're ready to go.
-          </Typography>
         </CardContent>
       </Card>
+
+      <Grid container spacing={4} className={classes.buttonGrid}>
+        <Typography variant="h5" gutterBottom>How To</Typography>
+
+        <Typography variant="body1" paragraph>
+          Backstage is a tool used for efficient repository creation through high quality, standardized templates.
+          Creating a repository using a template in Backstage is a streamlined process
+          that simplifies the setup of new projects.
+        </Typography>
+
+        <Typography variant="body1" paragraph>
+          To create a repo, navigate to the "Create" section in the Backstage
+          portal. Then select the appropriate pre-configured template that fits your project needs.
+        </Typography>
+
+        <Typography variant="body1" paragraph>
+          You will then be prompted to fill out a form with specific details like the project name,
+          repository location, and any necessary configuration options.
+        </Typography>
+
+        <Typography variant="body1" paragraph>
+          Once the form is submitted, Backstage automatically generates the new repository by cloning
+          the selected template and you're ready to go.
+        </Typography>
+      </Grid>
       <Grid container spacing={4} className={classes.buttonGrid}>
           <Grid item>
             <Button
