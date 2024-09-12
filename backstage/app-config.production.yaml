@@ -60,7 +60,7 @@ techdocs:
     type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 catalog:
-  orphanStrategy: delete
+  orphanStrategy: keep
   processingInterval: { minutes: 45 }
   rules:
     - allow: [Component, System, API, Resource, Location, Template]
