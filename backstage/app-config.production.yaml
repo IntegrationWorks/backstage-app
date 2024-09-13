@@ -63,7 +63,9 @@ catalog:
   processingInterval: { minutes: 5 }
   rules:
     - allow: [Component, System, API, Resource, Location, Template]
-  locations: []
+  locations:
+    - type: url
+      target: https://github.com/IntegrationWorks/backstage-templates/blob/main**/template.yaml
   providers:
     githubOrg:
       - id: production
