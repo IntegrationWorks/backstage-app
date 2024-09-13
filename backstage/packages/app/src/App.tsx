@@ -84,7 +84,7 @@ const app = createApp({
         },
         {
           id: 'microsoft-auth-provider',
-          title: 'Azure',
+          title: 'Azure - TODO',
           message: 'Sign in using Azure',
           apiRef: microsoftAuthApiRef,
         }
