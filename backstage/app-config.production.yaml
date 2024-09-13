@@ -87,8 +87,8 @@ catalog:
       templateProvider:
         organization: "IntegrationWorks"
         catalogPath: "**/template.yaml"
-        filters:
-          repository: "backstage-templates"
+        # filters:
+        #   repository: "backstage-templates"
         schedule: # same options as in SchedulerServiceTaskScheduleDefinition
           # supports cron, ISO duration, "human duration" as used in code
           frequency: { minutes: 30 }
