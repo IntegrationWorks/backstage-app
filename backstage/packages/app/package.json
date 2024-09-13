@@ -34,7 +34,7 @@
     "@backstage/plugin-scaffolder": "^1.21.0",
     "@backstage/plugin-search": "^1.4.12",
     "@backstage/plugin-search-react": "^1.7.12",
-    "@backstage/plugin-techdocs": "^1.10.6",
+    "@backstage/plugin-techdocs": "^1.10.8",
     "@backstage/plugin-techdocs-module-addons-contrib": "^1.1.11",
     "@backstage/plugin-techdocs-react": "^1.2.5",
     "@backstage/plugin-user-settings": "^0.8.7",

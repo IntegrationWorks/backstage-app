@@ -42,7 +42,7 @@
     "@backstage/plugin-search-backend-module-catalog": "^0.1.25",
     "@backstage/plugin-search-backend-module-techdocs": "^0.1.24",
     "@backstage/plugin-search-backend-node": "^1.2.24",
-    "@backstage/plugin-techdocs-backend": "^1.10.6",
+    "@backstage/plugin-techdocs-backend": "^1.10.12",
     "app": "link:../app",
     "node-gyp": "^10.0.0",
     "pg": "^8.12.0",
