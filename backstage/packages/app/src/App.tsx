@@ -3,7 +3,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
   CatalogEntityPage,
-
+  CatalogIndexPage,
   catalogPlugin,
 } from '@backstage/plugin-catalog';
 import {
@@ -99,10 +99,10 @@ const app = createApp({
 
 const routes = (
   <FlatRoutes>
-    <Route path="/" element={<Navigate to="catalog" />} />
-    <Route path="/catalog" element={<HomepageCompositionRoot />} >
+    <Route path="/" element={<HomepageCompositionRoot />} >
       <HomePage />
-    </Route>
+    </Route >
+    <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
       element={<CatalogEntityPage />}
