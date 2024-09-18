@@ -41,6 +41,8 @@ import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
 import { UnifiedThemeProvider } from '@backstage/theme';
 import { myTheme } from './theme/myTheme';
+import { HomepageCompositionRoot } from '@backstage/plugin-home'
+import { HomePage } from './components/home/HomePage'
 
 const app = createApp({
   apis,
@@ -98,7 +100,9 @@ const app = createApp({
 const routes = (
   <FlatRoutes>
     <Route path="/" element={<Navigate to="catalog" />} />
-    <Route path="/catalog" element={<CatalogIndexPage />} />
+    <Route path="/catalog" element={<HomepageCompositionRoot />} >
+      <HomePage />
+    </Route>
     <Route
       path="/catalog/:namespace/:kind/:name"
       element={<CatalogEntityPage />}
