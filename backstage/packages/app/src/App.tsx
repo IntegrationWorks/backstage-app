@@ -3,7 +3,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
   CatalogEntityPage,
-  CatalogIndexPage,
+
   catalogPlugin,
 } from '@backstage/plugin-catalog';
 import {
