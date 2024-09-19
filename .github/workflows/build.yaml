@@ -31,8 +31,8 @@ jobs:
       AUTH_ORG_WEBHOOK_URL: ${{secrets.AUTH_ORG_WEBHOOK_URL}}
       AZURE_AUTH_CLIENT_ID: ${{secrets.AZURE_AUTH_CLIENT_ID}}
       AZURE_AUTH_CLIENT_SECRET: ${{secrets.AZURE_AUTH_CLIENT_SECRET}}
-      APP_CONFIG_app_baseUrl: ${{secrets.BASE_URL}}
-      APP_CONFIG_backend_baseUrl: ${{secrets.BASE_URL}}
+      BASE_URL: ${{secrets.BASE_URL}}
+
 
     runs-on: ubuntu-latest
     permissions:
@@ -116,9 +116,6 @@ jobs:
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
           file: backstage/packages/backend/Dockerfile
-          build-args: |
-              APP_CONFIG_app_baseUrl: ${{env.BASE_URL}}
-              APP_CONFIG_backend_baseUrl: ${{env.BASE_URL}}
 
       - name: Build and push Nginx image
         uses: docker/build-push-action@v6
