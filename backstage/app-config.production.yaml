@@ -1,7 +1,7 @@
 app:
   title: Developer Portal
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
-  baseUrl: ${BASE_URL}
+  #baseUrl: ${BASE_URL}
 organization:
   name: Fusion5
 
@@ -15,7 +15,7 @@ backend:
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
   listen:
     port: 7007
-  baseUrl: ${BASE_URL}
+  #baseUrl: ${BASE_URL}
   csp:
     connect-src: ["'self'", "http:", "https:"]
   cors:

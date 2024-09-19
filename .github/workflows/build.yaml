@@ -116,6 +116,9 @@ jobs:
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
           file: backstage/packages/backend/Dockerfile
+          build-args: |
+              APP_CONFIG_app_baseUrl: ${{env.BASE_URL}}
+              APP_CONFIG_backend_baseUrl: ${{env.BASE_URL}}
 
       - name: Build and push Nginx image
         uses: docker/build-push-action@v6
