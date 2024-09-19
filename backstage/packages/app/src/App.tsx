@@ -37,8 +37,8 @@ import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
-import { githubAuthApiRef } from '@backstage/core-plugin-api';
-import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
+import { githubAuthApiRef, microsoftAuthApiRef, configApiRef, useApi } from '@backstage/core-plugin-api';
+
 import { UnifiedThemeProvider } from '@backstage/theme';
 import { myTheme } from './theme/myTheme';
 import { HomepageCompositionRoot } from '@backstage/plugin-home'
@@ -74,25 +74,48 @@ const app = createApp({
     });
   },
   components: {
-    SignInPage: props => (
-      <SignInPage
-        {...props}
-        auto
-        providers={[{
-          id: 'github-auth-provider',
-          title: 'GitHub',
-          message: 'Sign in using GitHub',
-          apiRef: githubAuthApiRef,
-        },
-        {
-          id: 'microsoft-auth-provider',
-          title: 'Azure - TODO',
-          message: 'Sign in using Azure',
-          apiRef: microsoftAuthApiRef,
-        }
-        ]}
-      />
-    ),
+    SignInPage: props => {
+      const configApi = useApi(configApiRef);
+      if (configApi.getString('auth.environment') === 'development') {
+        return (
+          <SignInPage
+            {...props}
+            providers={[
+              'guest',
+              {
+                id: 'github-auth-provider',
+                title: 'GitHub',
+                message: 'Sign in using GitHub',
+                apiRef: githubAuthApiRef,
+              },
+            ]}
+          />
+        );
+      }
+      return (
+        <SignInPage
+          {...props}
+          auto
+          providers={[{
+            id: 'github-auth-provider',
+            title: 'GitHub',
+            message: 'Sign in using GitHub',
+            apiRef: githubAuthApiRef,
+          },
+          {
+            id: 'microsoft-auth-provider',
+            title: 'Azure - TODO',
+            message: 'Sign in using Azure',
+            apiRef: microsoftAuthApiRef,
+          }, 'guest'
+          ]}
+        />
+
+      )
+    }
+
+
+
   },
 
 });

@@ -1,7 +1,7 @@
 app:
   title: Developer Portal
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
-  baseUrl: ${BASE_URL}
+  # baseUrl: ${BASE_URL}
 organization:
   name: Fusion5
 
@@ -13,7 +13,7 @@ backend:
   # and can't be reached by others.
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
-  baseUrl: ${BASE_URL}
+  # baseUrl: ${BASE_URL}
   listen:
     port: 7007
 

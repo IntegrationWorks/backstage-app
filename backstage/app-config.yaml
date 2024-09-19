@@ -1,6 +1,6 @@
 app:
   title: Fusion5 Developer Portal
-  baseUrl: "http://localhost:3000"
+  baseUrl: ${BASE_URL}
   extensions:
     - entity-content:github-actions/entity
     - entity-card:github-actions/latest-workflow-run
@@ -18,7 +18,7 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  baseUrl: "http://localhost:7007"
+  baseUrl: ${BASE_URL}
   listen:
     port: 7007
     # Uncomment the following host directive to bind to specific interfaces
@@ -137,3 +137,4 @@ catalog:
           frequency: { minutes: 30 }
           # supports ISO duration, "human duration" as used in code
           timeout: { minutes: 3 }
+
