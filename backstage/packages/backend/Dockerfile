@@ -11,6 +11,14 @@
 
 FROM node:18-bookworm-slim
 
+ARG BASE_URL
+ARG AZURE_TENANT_ID
+ARG AZURE_CLIENT_ID
+ARG AZURE_CLIENT_SECRET
+ARG POSTGRES_HOST
+ARG POSTGRES_USER
+ARG POSTGRES_PORT
+ARG POSTGRES_PASSWORD
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
@@ -43,34 +51,14 @@ WORKDIR /app
 
 # This switches many Node.js dependencies to production mode.
 ENV NODE_ENV=production
-
-RUN --mount=type=secret,id=base_url,env=BASE_URL \
-    --mount=type=secret,id=azure_tenant_id,env=AZURE_TENANT_ID \
-    --mount=type=secret,id=azure_client_id,env=AZURE_CLIENT_ID \
-    --mount=type=secret,id=azure_client_secret,env=AZURE_CLIENT_SECRET \
-    --mount=type=secret,id=postgres_host,env=POSTGRES_HOST \
-    --mount=type=secret,id=postgres_user,env=POSTGRES_USER \
-    --mount=type=secret,id=postgres_port,env=POSTGRES_PORT \
-    --mount=type=secret,id=postgres_password,env=POSTGRES_PASSWORD \
-    sh -c ' \
-    BASE_URL=${BASE_URL} && \
-    AZURE_TENANT_ID=${AZURE_TENANT_ID} && \
-    AZURE_CLIENT_ID=${AZURE_CLIENT_ID} && \
-    AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET} && \
-    POSTGRES_HOST=${POSTGRES_HOST} && \
-    POSTGRES_USER=${POSTGRES_USER} && \
-    POSTGRES_PORT=${POSTGRES_PORT} && \
-    POSTGRES_PASSWORD=${POSTGRES_PASSWORD} && \
-    { echo "BASE_URL=$BASE_URL"; \
-    echo "AZURE_TENANT_ID=$AZURE_TENANT_ID"; \
-    echo "AZURE_CLIENT_ID=$AZURE_CLIENT_ID"; \
-    echo "AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET"; \
-    echo "POSTGRES_HOST=$POSTGRES_HOST"; \
-    echo "POSTGRES_USER=$POSTGRES_USER"; \
-    echo "POSTGRES_PORT=$POSTGRES_PORT"; \
-    echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD"; \
-    } > /app/env_vars.sh && \
-    chmod +x /app/env_vars.sh'
+ENV BASE_URL=${BASE_URL}
+ENV AZURE_TENANT_ID=${AZURE_TENANT_ID}
+ENV AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+ENV AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
+ENV POSTGRES_HOST=${POSTGRES_HOST}
+ENV POSTGRES_USER=${POSTGRES_USER}
+ENV POSTGRES_PORT=${POSTGRES_PORT}
+ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
 
 # Copy repo skeleton first, to avoid unnecessary docker cache invalidation.
@@ -88,4 +76,4 @@ RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
 
 
-CMD ["/bin/sh", "-c", "source /app/env_vars.sh && node packages/backend --config app-config.yaml --config app-config.production.yaml"]
+CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
