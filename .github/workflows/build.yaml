@@ -123,8 +123,8 @@ jobs:
             "azure_client_id=${{env.AZURE_AUTH_CLIENT_ID}}"
             "azure_client_secret=${{env.AZURE_AUTH_CLIENT_SECRET}}"
             "postgres_host=${{ env.POSTGRES_HOST }}"
-            "postgres_user=${{ env.POSTGRES_USER }}
-            "postgres_port=${{ env.POSTGRES_PORT }} 
+            "postgres_user=${{ env.POSTGRES_USER }}"
+            "postgres_port=${{ env.POSTGRES_PORT }}"
             "postgres_password=${{ env.POSTGRES_PASSWORD }}"
 
           
