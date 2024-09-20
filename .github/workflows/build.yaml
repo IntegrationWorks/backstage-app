@@ -94,8 +94,7 @@ jobs:
 
       - name: Build Application
         working-directory: ./backstage
-        env:
-          BASE_URL: ${{ secrets.BASE_URL }}
+        
         run: |
           # Build backend
           echo $POSTGRES_PORT
