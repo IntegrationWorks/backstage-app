@@ -119,7 +119,7 @@ jobs:
           tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
           file: backstage/packages/backend/Dockerfile
           build-args: |
-            BASE_URL: ${{ secrets.BASE_URL }}
+            BASE_URL=${{ secrets.BASE_URL }}
           
 
       - name: Build and push Nginx image
