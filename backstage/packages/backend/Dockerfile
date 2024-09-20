@@ -51,7 +51,26 @@ RUN --mount=type=secret,id=base_url,env=BASE_URL \
     --mount=type=secret,id=postgres_host,env=POSTGRES_HOST \
     --mount=type=secret,id=postgres_user,env=POSTGRES_USER \
     --mount=type=secret,id=postgres_port,env=POSTGRES_PORT \
-    --mount=type=secret,id=postgres_password,env=POSTGRES_PASSWORD 
+    --mount=type=secret,id=postgres_password,env=POSTGRES_PASSWORD \
+    sh -c ' \
+    BASE_URL=$(cat /run/secrets/base_url) && \
+    AZURE_TENANT_ID=$(cat /run/secrets/azure_tenant_id) && \
+    AZURE_CLIENT_ID=$(cat /run/secrets/azure_client_id) && \
+    AZURE_CLIENT_SECRET=$(cat /run/secrets/azure_client_secret) && \
+    POSTGRES_HOST=$(cat /run/secrets/postgres_host) && \
+    POSTGRES_USER=$(cat /run/secrets/postgres_user) && \
+    POSTGRES_PORT=$(cat /run/secrets/postgres_port) && \
+    POSTGRES_PASSWORD=$(cat /run/secrets/postgres_password) && \
+    { echo "BASE_URL=$BASE_URL"; \
+    echo "AZURE_TENANT_ID=$AZURE_TENANT_ID"; \
+    echo "AZURE_CLIENT_ID=$AZURE_CLIENT_ID"; \
+    echo "AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET"; \
+    echo "POSTGRES_HOST=$POSTGRES_HOST"; \
+    echo "POSTGRES_USER=$POSTGRES_USER"; \
+    echo "POSTGRES_PORT=$POSTGRES_PORT"; \
+    echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD"; \
+    } > /app/env_vars.sh && \
+    chmod +x /app/env_vars.sh'
 
 
 # Copy repo skeleton first, to avoid unnecessary docker cache invalidation.
@@ -69,4 +88,4 @@ RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
 
 
-CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
+CMD ["/bin/sh", "-c", "source /app/env_vars.sh && node packages/backend --config app-config.yaml --config app-config.production.yaml"]
