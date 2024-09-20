@@ -11,14 +11,6 @@
 
 FROM node:18-bookworm-slim
 
-ARG BASE_URL
-ARG AZURE_TENANT_ID
-ARG AZURE_CLIENT_ID
-ARG AZURE_CLIENT_SECRET
-ARG POSTGRES_HOST
-ARG POSTGRES_USER
-ARG POSTGRES_PORT
-ARG POSTGRES_PASSWORD
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
