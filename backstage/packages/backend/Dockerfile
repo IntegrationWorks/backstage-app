@@ -53,7 +53,7 @@ RUN --mount=type=secret,id=base_url,env=BASE_URL \
     --mount=type=secret,id=postgres_port,env=POSTGRES_PORT \
     --mount=type=secret,id=postgres_password,env=POSTGRES_PASSWORD \
     sh -c ' \
-    BASE_URL=$(cat /run/secrets/base_url) && \
+    BASE_URL=${BASE_URL} && \
     AZURE_TENANT_ID=$(cat /run/secrets/azure_tenant_id) && \
     AZURE_CLIENT_ID=$(cat /run/secrets/azure_client_id) && \
     AZURE_CLIENT_SECRET=$(cat /run/secrets/azure_client_secret) && \
