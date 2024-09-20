@@ -51,14 +51,15 @@ WORKDIR /app
 
 # This switches many Node.js dependencies to production mode.
 ENV NODE_ENV=production
-ENV BASE_URL=${BASE_URL}
-ENV AZURE_TENANT_ID=${AZURE_TENANT_ID}
-ENV AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
-ENV AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
-ENV POSTGRES_HOST=${POSTGRES_HOST}
-ENV POSTGRES_USER=${POSTGRES_USER}
-ENV POSTGRES_PORT=${POSTGRES_PORT}
-ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+RUN --mount=type=secret,id=base_url,env=BASE_URL \
+    --mount=type=secret,id=azure_tenant_id,env=AZURE_TENANT_ID \
+    --mount=type=secret,id=azure_client_id,env=AZURE_CLIENT_ID \
+    --mount=type=secret,id=azure_client_secret,env=AZURE_CLIENT_SECRET \
+    --mount=type=secret,id=postgres_host,env=POSTGRES_HOST \
+    --mount=type=secret,id=postgres_user,env=POSTGRES_USER \
+    --mount=type=secret,id=postgres_port,env=POSTGRES_PORT \
+    --mount=type=secret,id=postgres_password,env=POSTGRES_PASSWORD 
 
 
 # Copy repo skeleton first, to avoid unnecessary docker cache invalidation.
