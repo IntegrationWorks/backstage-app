@@ -107,7 +107,7 @@ const app = createApp({
             title: 'Azure - TODO',
             message: 'Sign in using Azure',
             apiRef: microsoftAuthApiRef,
-          }, 'guest'
+          }
           ]}
         />
 
