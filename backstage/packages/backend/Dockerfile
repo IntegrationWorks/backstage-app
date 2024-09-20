@@ -54,13 +54,13 @@ RUN --mount=type=secret,id=base_url,env=BASE_URL \
     --mount=type=secret,id=postgres_password,env=POSTGRES_PASSWORD \
     sh -c ' \
     BASE_URL=${BASE_URL} && \
-    AZURE_TENANT_ID=$(cat /run/secrets/azure_tenant_id) && \
-    AZURE_CLIENT_ID=$(cat /run/secrets/azure_client_id) && \
-    AZURE_CLIENT_SECRET=$(cat /run/secrets/azure_client_secret) && \
-    POSTGRES_HOST=$(cat /run/secrets/postgres_host) && \
-    POSTGRES_USER=$(cat /run/secrets/postgres_user) && \
-    POSTGRES_PORT=$(cat /run/secrets/postgres_port) && \
-    POSTGRES_PASSWORD=$(cat /run/secrets/postgres_password) && \
+    AZURE_TENANT_ID=${AZURE_TENANT_ID} && \
+    AZURE_CLIENT_ID=${AZURE_CLIENT_ID} && \
+    AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET} && \
+    POSTGRES_HOST=${POSTGRES_HOST} && \
+    POSTGRES_USER=${POSTGRES_USER} && \
+    POSTGRES_PORT=${POSTGRES_PORT}) && \
+    POSTGRES_PASSWORD=${POSTGRES_PASSWORD} && \
     { echo "BASE_URL=$BASE_URL"; \
     echo "AZURE_TENANT_ID=$AZURE_TENANT_ID"; \
     echo "AZURE_CLIENT_ID=$AZURE_CLIENT_ID"; \
