@@ -54,14 +54,14 @@ module "backstage" {
   identity_id          = data.azurerm_user_assigned_identity.this.id
   acr_server           = data.azurerm_container_registry.acr.login_server
   secrets = [
-    { name = "base_url", value = "${azurerm_dns_cname_record.this.name}.${data.azurerm_dns_zone.this.name}" },
-    { name = "azure_tenant_id", value = var.azure_tenant_id },
-    { name = "azure_client_id", value = var.azure_auth_client_id },
-    { name = "azure_client_secret", value = var.azure_auth_client_secret },
-    { name = "postgres_host", value = var.postgres_host },
-    { name = "postgres_user", value = var.postgres_user },
-    { name = "postgres_port", value = var.postgres_port },
-    { name = "postgres_password", value = var.postgres_password }
+    { name = "base-url", value = "${azurerm_dns_cname_record.this.name}.${data.azurerm_dns_zone.this.name}" },
+    { name = "azure-tenant-id", value = var.azure_tenant_id },
+    { name = "azure-client-id", value = var.azure_auth_client_id },
+    { name = "azure-client-secret", value = var.azure_auth_client_secret },
+    { name = "postgres-host", value = var.postgres_host },
+    { name = "postgres-user", value = var.postgres_user },
+    { name = "postgres-port", value = var.postgres_port },
+    { name = "postgres-password", value = var.postgres_password }
   ]
 }
 
