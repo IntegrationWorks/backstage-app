@@ -49,3 +49,12 @@ variable "secrets" {
     value = string
   }))
 }
+
+variable "envs" {
+  description = "List of Environment variables"
+
+  type = list(object({
+    name        = string
+    secret_name = string
+  }))
+}

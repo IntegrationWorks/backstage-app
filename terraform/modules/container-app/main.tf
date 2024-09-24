@@ -52,6 +52,15 @@ resource "azurerm_container_app" "this" {
     }
 
   }
+
+  dynamic "env" {
+    for_each = var.envs
+
+    content {
+      name        = env.value.name
+      secret_name = env.value.secret_name
+    }
+  }
 }
 
 

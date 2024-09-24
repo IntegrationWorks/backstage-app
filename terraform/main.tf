@@ -37,6 +37,7 @@ module "nginx" {
   identity_id = data.azurerm_user_assigned_identity.this.id
   acr_server  = data.azurerm_container_registry.acr.login_server
   secrets     = []
+  envs        = []
 }
 
 module "backstage" {
@@ -62,6 +63,17 @@ module "backstage" {
     { name = "postgres-user", value = var.postgres_user },
     { name = "postgres-port", value = var.postgres_port },
     { name = "postgres-password", value = var.postgres_password }
+  ]
+
+  envs = [
+    { name = "BASE_URL", secret_name = "base-url" },
+    { name = "AZURE_TENANT_ID", secret_name = "azure-tenant-id" },
+    { name = "AZURE_CLIENT_ID", secret_name = "azure-client-id" },
+    { name = "AZURE_CLIENT_SECRET", secret_name = "azure-client-secret" },
+    { name = "POSTGRES_HOST", secret_name = "postgres-host" },
+    { name = "POSTGRES_USER", secret_name = "postgres-user" },
+    { name = "POSTGRES_PORT", secret_name = "postgres-post" },
+    { name = "POSTGRES_PASSWORD", secret_name = "postgres-password" }
   ]
 }
 
