@@ -72,7 +72,7 @@ module "backstage" {
     { name = "AZURE_CLIENT_SECRET", secret_name = "azure-client-secret" },
     { name = "POSTGRES_HOST", secret_name = "postgres-host" },
     { name = "POSTGRES_USER", secret_name = "postgres-user" },
-    { name = "POSTGRES_PORT", secret_name = "postgres-post" },
+    { name = "POSTGRES_PORT", secret_name = "postgres-port" },
     { name = "POSTGRES_PASSWORD", secret_name = "postgres-password" }
   ]
 }
