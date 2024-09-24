@@ -1,7 +1,7 @@
 app:
   title: Developer Portal
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
-  # baseUrl: ${base-url}
+  # baseUrl: ${BASE_URL}
 organization:
   name: Fusion5
 
@@ -13,14 +13,14 @@ backend:
   # and can't be reached by others.
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
-  # baseUrl: ${base-url}
+  # baseUrl: ${BASE_URL}
   listen:
     port: 7007
 
   csp:
     connect-src: ["'self'", "http:", "https:"]
   cors:
-    origin: ${base-url}
+    origin: ${BASE_URL}
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
 
@@ -28,10 +28,10 @@ backend:
   database:
     client: pg
     connection:
-      host: ${postgres-host}
-      port: ${postgres-port}
-      user: ${postgres-user}
-      password: ${postgres-password}
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
       # https://node-postgres.com/features/ssl
       # you can set the sslmode configuration option via the `PGSSLMODE` environment variable
       # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
