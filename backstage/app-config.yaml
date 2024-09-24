@@ -1,6 +1,6 @@
 app:
   title: Fusion5 Developer Portal
-  baseUrl: ${BASE_URL}
+  baseUrl: ${base-url}
   extensions:
     - entity-content:github-actions/entity
     - entity-card:github-actions/latest-workflow-run
@@ -18,7 +18,7 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  baseUrl: ${BASE_URL}
+  baseUrl: ${base-url}
   listen:
     port: 7007
     # Uncomment the following host directive to bind to specific interfaces
@@ -28,7 +28,7 @@ backend:
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   cors:
-    origin: ${BASE_URL}
+    origin: ${base-url}
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
   # This is for local development only, it is not recommended to use this in production
@@ -66,7 +66,7 @@ techdocs:
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   experimentalExtraAllowedOrigins:
-    ["${BASE_URL}", "${BASE_URL}:443", "${BASE_URL}:8443"]
+    ["${base-url}", "${base-url}:443", "${base-url}:8443"]
   environment: production
   providers:
     # See https://backstage.io/docs/auth/guest/provider
@@ -83,9 +83,9 @@ auth:
             - resolver: usernameMatchingUserEntityName
     microsoft:
       production:
-        clientId: ${AZURE_CLIENT_ID}
-        clientSecret: ${AZURE_CLIENT_SECRET}
-        tenantId: ${AZURE_TENANT_ID}
+        clientId: ${azure-client-id}
+        clientSecret: ${azure-client-secret}
+        tenantId: ${azure-tenant-id}
         signIn:
           resolvers:
             - resolver: emailMatchingUserEntityProfileEmail
