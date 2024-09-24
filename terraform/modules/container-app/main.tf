@@ -44,6 +44,14 @@ resource "azurerm_container_app" "this" {
   lifecycle {
     ignore_changes = [ingress.0.custom_domain] // Required to not delete the custom domain created in dns.tf
   }
+  dynamic "secret" {
+    for_each = var.secrets
+    content {
+      name  = secrets.value.name
+      value = secrets.value.value
+    }
+
+  }
 }
 
 

@@ -31,6 +31,12 @@ jobs:
       TF_VAR_cname_record_name: ${{secrets.CNAME_RECORD_NAME}}
       TF_VAR_txt_record_name: ${{secrets.TXT_RECORD_NAME}}
       TF_VAR_dns_resource_group_name: ${{secrets.DNS_RESOURCE_GROUP_NAME}}
+      TF_VAR_azure_tenant_id: ${{secrets.ARM_TENANT_ID}}
+      TF_VAR_azure_auth_client_id: ${{secrets.AZURE_AUTH_CLIENT_ID}}
+      TF_VAR_azure_auth_client_secret: ${{secrets.AZURE_AUTH_CLIENT_SECRET}}
+      TF_VAR_postgres_host: ${{secrets.POSTGRES_HOST}}
+      TF_VAR_postgres_user: ${{secrets.POSTGRES_USER}}
+      TF_VAR_postgres_password: ${{secrets.POSTGRES_PASSWORD}}
       
 
     runs-on: ubuntu-latest

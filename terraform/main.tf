@@ -36,6 +36,7 @@ module "nginx" {
 
   identity_id = data.azurerm_user_assigned_identity.this.id
   acr_server  = data.azurerm_container_registry.acr.login_server
+  secrets     = []
 }
 
 module "backstage" {
@@ -52,6 +53,16 @@ module "backstage" {
   external_enabled     = false
   identity_id          = data.azurerm_user_assigned_identity.this.id
   acr_server           = data.azurerm_container_registry.acr.login_server
+  secrets = [
+    { name = "BASE_URL", value = "${azurerm_dns_cname_record.this.name}.${data.azurerm_dns_zone.this.name}" },
+    { name = "AZURE_TENANT_ID", value = var.azure_tenant_id },
+    { name = "AZURE_CLIENT_ID", value = var.azure_auth_client_id },
+    { name = "AZURE_CLIENT_SECRET", value = var.azure_auth_client_secret },
+    { name = "POSTGRES_HOST", value = var.postgres_host },
+    { name = "POSTGRES_USER", value = var.postgres_user },
+    { name = "POSTGRES_PORT", value = var.postgres_port },
+    { name = "POSTGRES_PASSWORD", value = var.postgres_password }
+  ]
 }
 
 
