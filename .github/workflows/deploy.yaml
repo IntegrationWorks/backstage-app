@@ -34,7 +34,7 @@ jobs:
       TF_VAR_azure_tenant_id: ${{secrets.ARM_TENANT_ID}}
       TF_VAR_azure_auth_client_id: ${{secrets.AZURE_AUTH_CLIENT_ID}}
       TF_VAR_azure_auth_client_secret: ${{secrets.AZURE_AUTH_CLIENT_SECRET}}
-      TF_VAR_postgres_host: ${{secrets.POSTGRES_HOST}}
+      TF_VAR_postgres_host: '"${{secrets.POSTGRES_HOST}}"'
       TF_VAR_postgres_user: ${{secrets.POSTGRES_USER}}
       TF_VAR_postgres_password: ${{secrets.POSTGRES_PASSWORD}}
       
