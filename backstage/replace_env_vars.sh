@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Function to escape special characters for sed
+escape_sed() {
+    echo "$1" | sed 's/[\/&]/\\&/g'
+}
+
 # Function to replace substrings and count changes
 replace_substrings_with_count() {
     local text="$1"
@@ -10,8 +15,12 @@ replace_substrings_with_count() {
     for pair in "$@"; do
         var="${pair%%=*}"
         value="${pair#*=}"
+
+        # Escape special characters in the replacement value
+        value=$(escape_sed "$value")
+
         # Use sed to replace all instances of the substring, including the ${}
-        replaced_text=$(printf '%s\n' "$text" | sed "s#\${${var}}#${value//\\/\\\\}#g")
+        replaced_text=$(printf '%s\n' "$text" | sed "s#\${${var}}#${value}#g")
         
         # Count how many replacements occurred by comparing before/after
         local replacement_count
