@@ -1,9 +1,9 @@
 app:
   title: Developer Portal
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
-  baseUrl: ${BASE_URL}
-organization:
-  name: Fusion5
+#   baseUrl: ${BASE_URL}
+# organization:
+#   name: Fusion5
 
 backend:
   # Note that the baseUrl should be the URL that the browser and other clients
@@ -13,15 +13,15 @@ backend:
   # and can't be reached by others.
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
-  listen:
-    port: 7007
-  baseUrl: ${BASE_URL}
-  csp:
-    connect-src: ["'self'", "http:", "https:"]
-  cors:
-    origin: ${BASE_URL}
-    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
-    credentials: true
+  # listen:
+  #   port: 7007
+  # baseUrl: ${BASE_URL}
+  # csp:
+  #   connect-src: ["'self'", "http:", "https:"]
+  # cors:
+  #   origin: ${BASE_URL}
+  #   methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+  #   credentials: true
 
   # config options: https://node-postgres.com/apis/client
   database:
