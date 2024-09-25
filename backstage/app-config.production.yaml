@@ -2,6 +2,11 @@ app:
   title: Developer Portal
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
   # baseUrl: ${BASE_URL}
+  analytics:
+    ga:
+      debug: true
+    ga4:
+      debug: true
 organization:
   name: Fusion5
 
