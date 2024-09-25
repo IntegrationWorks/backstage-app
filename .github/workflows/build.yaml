@@ -79,6 +79,21 @@ jobs:
       #     bash replace_env_vars.sh app-config.production.yaml POSTGRES_HOST=${{ env.POSTGRES_HOST }} POSTGRES_USER=${{ env.POSTGRES_USER }} POSTGRES_PORT=${{ env.POSTGRES_PORT }} POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} 
                 
 
+      - name: Install NVM and Node
+        run: |
+          # installs nvm (Node Version Manager)
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+
+          # download and install Node.js (you may need to restart the terminal)
+          nvm install 20
+
+          # verifies the right Node.js version is in the environment
+          node -v # should print `v20.17.0`
+
+          # verifies the right npm version is in the environment
+          npm -v # should print `10.8.2`
+
+
       - name: Install yarn
         run: |
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/yarn.gpg
