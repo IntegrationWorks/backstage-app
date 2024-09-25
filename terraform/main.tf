@@ -59,7 +59,7 @@ module "backstage" {
     { name = "azure-tenant-id", value = var.azure_tenant_id },
     { name = "azure-client-id", value = var.azure_auth_client_id },
     { name = "azure-client-secret", value = var.azure_auth_client_secret },
-    { name = "postgres-host", value = var.postgres_host },
+    # { name = "postgres-host", value = var.postgres_host },
     { name = "postgres-user", value = var.postgres_user },
     { name = "postgres-port", value = var.postgres_port },
     { name = "postgres-password", value = var.postgres_password }
@@ -70,7 +70,7 @@ module "backstage" {
     { name = "AZURE_TENANT_ID", secret_name = "azure-tenant-id" },
     { name = "AZURE_CLIENT_ID", secret_name = "azure-client-id" },
     { name = "AZURE_CLIENT_SECRET", secret_name = "azure-client-secret" },
-    { name = "POSTGRES_HOST", secret_name = "postgres-host" },
+    # { name = "POSTGRES_HOST", secret_name = "postgres-host" },
     { name = "POSTGRES_USER", secret_name = "postgres-user" },
     { name = "POSTGRES_PORT", secret_name = "postgres-port" },
     { name = "POSTGRES_PASSWORD", secret_name = "postgres-password" }
