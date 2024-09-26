@@ -84,4 +84,10 @@ variable "postgres_port" {
   default     = 5432
 }
 
+variable "postgres_ssl_mode" {
+  description = "Postgres DB ssl mode"
+  sensitive   = true
+  default     = "require"
+
+}
 

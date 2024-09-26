@@ -45,6 +45,11 @@ jobs:
 
       - name: Make replace_env_vars.sh executable
         run: chmod +x ./backstage/replace_env_vars.sh
+      
+      - name: Postgres SSL cert
+        working-directory: ./backstage
+        run: wget --no-check-certificate https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
+
 
       - name: List files in the current directory
         run: ls -la ./backstage
