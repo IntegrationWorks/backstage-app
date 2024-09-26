@@ -100,40 +100,44 @@ jobs:
           sudo wget --no-check-certificate -O /etc/ssl/certs/DigiCertGlobalRootCA.crt.pem https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
           yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
 
-      - name: Docker Login
-        uses: azure/docker-login@v2
-        with:
-          login-server: ${{ secrets.AZURE_REPO_URL }}
-          username: ${{ env.ARM_CLIENT_ID }}
-          password: ${{ env.ARM_CLIENT_SECRET }}
+          ls
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      
 
-      - name: Build and push Backstage image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./backstage
-          push: true
-          tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
-          file: backstage/packages/backend/Dockerfile
-          # secrets: |
-          #   "base_url=${{ secrets.BASE_URL }}"
-          #   "azure_tenant_id=${{env.ARM_TENANT_ID}}"
-          #   "azure_client_id=${{env.AZURE_AUTH_CLIENT_ID}}"
-          #   "azure_client_secret=${{env.AZURE_AUTH_CLIENT_SECRET}}"
-          #   "postgres_host=${{ env.POSTGRES_HOST }}"
-          #   "postgres_user=${{ env.POSTGRES_USER }}"
-          #   "postgres_port=${{ env.POSTGRES_PORT }}"
-          #   "postgres_password=${{ env.POSTGRES_PASSWORD }}"
+      # - name: Docker Login
+      #   uses: azure/docker-login@v2
+      #   with:
+      #     login-server: ${{ secrets.AZURE_REPO_URL }}
+      #     username: ${{ env.ARM_CLIENT_ID }}
+      #     password: ${{ env.ARM_CLIENT_SECRET }}
+
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v3
+
+      # - name: Build and push Backstage image
+      #   uses: docker/build-push-action@v6
+      #   with:
+      #     context: ./backstage
+      #     push: true
+      #     tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
+      #     file: backstage/packages/backend/Dockerfile
+      #     # secrets: |
+      #     #   "base_url=${{ secrets.BASE_URL }}"
+      #     #   "azure_tenant_id=${{env.ARM_TENANT_ID}}"
+      #     #   "azure_client_id=${{env.AZURE_AUTH_CLIENT_ID}}"
+      #     #   "azure_client_secret=${{env.AZURE_AUTH_CLIENT_SECRET}}"
+      #     #   "postgres_host=${{ env.POSTGRES_HOST }}"
+      #     #   "postgres_user=${{ env.POSTGRES_USER }}"
+      #     #   "postgres_port=${{ env.POSTGRES_PORT }}"
+      #     #   "postgres_password=${{ env.POSTGRES_PASSWORD }}"
 
           
 
-      - name: Build and push Nginx image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./nginx
-          push: true
-          tags: ${{ secrets.AZURE_REPO_URL }}/nginx:latest
-          file: nginx/Dockerfile
+      # - name: Build and push Nginx image
+      #   uses: docker/build-push-action@v6
+      #   with:
+      #     context: ./nginx
+      #     push: true
+      #     tags: ${{ secrets.AZURE_REPO_URL }}/nginx:latest
+      #     file: nginx/Dockerfile
 
