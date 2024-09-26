@@ -32,6 +32,7 @@ jobs:
       AZURE_AUTH_CLIENT_ID: ${{secrets.AZURE_AUTH_CLIENT_ID}}
       AZURE_AUTH_CLIENT_SECRET: ${{secrets.AZURE_AUTH_CLIENT_SECRET}}
       BASE_URL: ${{secrets.BASE_URL}}
+      SSL_CERT_DIR: /etc/ssl/certs
 
 
     runs-on: ubuntu-latest
