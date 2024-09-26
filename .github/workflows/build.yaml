@@ -97,7 +97,7 @@ jobs:
         run: |
           # Build backend
           echo $POSTGRES_PORT
-          wget --no-check-certificate -O /etc/ssl/certs/DigiCertGlobalRootCA.crt.pem https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
+          sudo wget --no-check-certificate -O /etc/ssl/certs/DigiCertGlobalRootCA.crt.pem https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
           yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
 
       - name: Docker Login
