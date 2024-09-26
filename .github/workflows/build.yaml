@@ -99,7 +99,7 @@ jobs:
           echo $POSTGRES_PORT
           sudo wget --no-check-certificate -O /etc/ssl/certs/DigiCertGlobalRootCA.crt.pem https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
           yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
-          sudo mv/etc/ssl/certs/DigiCertGlobalRootCA.crt.pem ./
+          sudo mv /etc/ssl/certs/DigiCertGlobalRootCA.crt.pem ./
           ls
 
       
