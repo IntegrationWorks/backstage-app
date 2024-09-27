@@ -64,7 +64,7 @@ module "backstage" {
     { name = "postgres-port", value = var.postgres_port },
     { name = "postgres-password", value = var.postgres_password },
     { name = "postgres-ssl-mode", value = var.postgres_ssl_mode },
-    { name = "node-extra-ca-certs", value = "" }
+    // { name = "node-extra-ca-certs", value = "" }
   ]
 
   envs = [
