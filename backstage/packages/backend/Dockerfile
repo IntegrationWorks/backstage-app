@@ -71,12 +71,9 @@ RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid
     yarn install --frozen-lockfile --production --network-timeout 300000
 
 # Then copy the rest of the backend bundle, along with any other files we might want.
-COPY --chown=node:node packages/backend/dist/bundle.tar.gz app-config*.yaml github-credentials.yaml ./
+COPY --chown=node:node packages/backend/dist/bundle.tar.gz app-config*.yaml github-credentials.yaml DigiCertGlobalRootCA.crt.pem ./
 
 
-USER root
-COPY DigiCertGlobalRootCA.crt.pem /etc/ssl/certs/DigiCertGlobalRootCA.crt.pem
-RUN update-ca-certificates
 
 USER node
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
