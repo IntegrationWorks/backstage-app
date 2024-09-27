@@ -45,8 +45,8 @@ backend:
       #   ca: # if you have a CA file and want to verify it you can uncomment this section
       #     $file: ./DigiCertGlobalRootCA.crt.pem
 
-    knexConfig:
-      debug: true
+    # knexConfig:
+    #   debug: true
 
 techdocs:
   builder: "local" # Alternatives - 'external'
