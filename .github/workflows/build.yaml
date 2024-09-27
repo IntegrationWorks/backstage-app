@@ -83,7 +83,7 @@ jobs:
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/yarn.gpg
           echo "deb [signed-by=/etc/apt/trusted.gpg.d/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
           sudo apt update
-          sudo apt install yarn
+          sudo apt install yarn ca-certificates
 
       - name: Install yarn dependencies
         working-directory: ./backstage
@@ -98,6 +98,7 @@ jobs:
           # Build backend
           echo $POSTGRES_PORT
           sudo wget --no-check-certificate -O /etc/ssl/certs/DigiCertGlobalRootCA.crt.pem https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
+          sudo update-ca-certificates
           yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
           sudo mv /etc/ssl/certs/DigiCertGlobalRootCA.crt.pem ./
           ls
