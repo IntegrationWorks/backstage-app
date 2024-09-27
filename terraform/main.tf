@@ -63,7 +63,8 @@ module "backstage" {
     { name = "postgres-user", value = var.postgres_user },
     { name = "postgres-port", value = var.postgres_port },
     { name = "postgres-password", value = var.postgres_password },
-    { name = "postgres-ssl-mode", value = var.postgres_ssl_mode }
+    { name = "postgres-ssl-mode", value = var.postgres_ssl_mode },
+    { name = "node-extra-ca-certs", value = "" }
   ]
 
   envs = [
@@ -75,7 +76,7 @@ module "backstage" {
     { name = "POSTGRES_USER", secret_name = "postgres-user" },
     { name = "POSTGRES_PORT", secret_name = "postgres-port" },
     { name = "POSTGRES_PASSWORD", secret_name = "postgres-password" },
-    { name = "PGSSLMODE", secret_name = "postgres-ssl-mode" }
+    //{ name = "PGSSLMODE", secret_name = "postgres-ssl-mode" }
   ]
 }
 
