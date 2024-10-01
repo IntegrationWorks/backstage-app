@@ -4,7 +4,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import {
