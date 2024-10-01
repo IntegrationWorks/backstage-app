@@ -83,7 +83,8 @@ jobs:
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/yarn.gpg
           echo "deb [signed-by=/etc/apt/trusted.gpg.d/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
           sudo apt update
-          sudo apt install yarn ca-certificates
+          sudo apt install yarn
+          # ca-certificates
 
       - name: Install yarn dependencies
         working-directory: ./backstage
@@ -91,16 +92,16 @@ jobs:
           yarn install --frozen-lockfile
           yarn tsc
 
-      # - name: Build Application
-      #   working-directory: ./backstage
+      - name: Build Application
+        working-directory: ./backstage
         
-      #   run: |
-      #     # Build backend
-      #     echo $POSTGRES_PORT
-      #     sudo wget --no-check-certificate https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
-      #     # sudo update-ca-certificates
-      #     yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
-      #     ls
+        run: |
+          # Build backend
+          echo $POSTGRES_PORT
+          # sudo wget --no-check-certificate https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
+          # sudo update-ca-certificates
+          yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
+          ls
 
       
 
