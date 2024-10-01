@@ -91,16 +91,16 @@ jobs:
           yarn install --frozen-lockfile
           yarn tsc
 
-      - name: Build Application
-        working-directory: ./backstage
+      # - name: Build Application
+      #   working-directory: ./backstage
         
-        run: |
-          # Build backend
-          echo $POSTGRES_PORT
-          sudo wget --no-check-certificate https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
-          # sudo update-ca-certificates
-          yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
-          ls
+      #   run: |
+      #     # Build backend
+      #     echo $POSTGRES_PORT
+      #     sudo wget --no-check-certificate https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
+      #     # sudo update-ca-certificates
+      #     yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
+      #     ls
 
       
 

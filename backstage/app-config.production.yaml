@@ -19,15 +19,15 @@ backend:
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
   # baseUrl: ${BASE_URL}
-  listen:
-    port: 7007
+  # listen:
+  #   port: 7007
 
-  csp:
-    connect-src: ["'self'", "http:", "https:"]
-  cors:
-    origin: ${BASE_URL}
-    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
-    credentials: true
+  # csp:
+  #   connect-src: ["'self'", "http:", "https:"]
+  # cors:
+  #   origin: ${BASE_URL}
+  #   methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+  #   credentials: true
 
   # config options: https://node-postgres.com/apis/client
   database:
