@@ -51,15 +51,6 @@ WORKDIR /app
 
 # This switches many Node.js dependencies to production mode.
 ENV NODE_ENV=production
-# ENV BASE_URL='${BASE_URL}'
-# ENV AZURE_TENANT_ID=${AZURE_TENANT_ID}
-# ENV AZURE_CLIENT_ID='${AZURE_CLIENT_ID}'
-# ENV AZURE_CLIENT_SECRET='${AZURE_CLIENT_SECRET}'
-# ENV POSTGRES_HOST=${POSTGRES_HOST}
-# ENV POSTGRES_USER=${POSTGRES_USER}
-# ENV POSTGRES_PORT=${POSTGRES_PORT}
-# ENV POSTGRES_PASSWORD='${POSTGRES_PASSWORD}'
-
 
 # Copy repo skeleton first, to avoid unnecessary docker cache invalidation.
 # The skeleton contains the package.json of each package in the monorepo,
@@ -72,10 +63,6 @@ RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid
 
 # Then copy the rest of the backend bundle, along with any other files we might want.
 COPY --chown=node:node packages/backend/dist/bundle.tar.gz app-config*.yaml github-credentials.yaml ./
-
-
-
-USER node
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
 
