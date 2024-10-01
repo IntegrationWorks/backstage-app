@@ -56,7 +56,7 @@ jobs:
           clientSecret: ${{env.AUTH_ORG_CLIENT_SECRET}}
           webhookSecret: ${{env.AUTH_ORG_WEBHOOK_SECRET}}
           privateKey: ${{env.AUTH_ORG_PRIVATE_KEY}}" >> github-credentials.yaml
-
+          
       - name: Install yarn
         run: |
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/yarn.gpg
