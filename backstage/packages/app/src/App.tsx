@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Navigate, Route } from 'react-router-dom';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
   CatalogEntityPage,
@@ -41,8 +41,6 @@ import { githubAuthApiRef, microsoftAuthApiRef, configApiRef, useApi } from '@ba
 
 import { UnifiedThemeProvider } from '@backstage/theme';
 import { myTheme } from './theme/myTheme';
-import { HomepageCompositionRoot } from '@backstage/plugin-home'
-import { HomePage } from './components/home/HomePage'
 
 const app = createApp({
   apis,
@@ -122,9 +120,7 @@ const app = createApp({
 
 const routes = (
   <FlatRoutes>
-    <Route path="/" element={<HomepageCompositionRoot />} >
-      <HomePage />
-    </Route >
+    <Route path="/" element={<Navigate to="catalog" />} />
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
