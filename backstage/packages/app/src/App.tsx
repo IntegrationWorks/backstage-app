@@ -50,7 +50,7 @@ const app = createApp({
     id: 'dark-theme',
     title: 'Dark Theme',
     variant: 'dark',
-    icon: <LightIcon />,
+    icon: <Brightness2Icon />,
     Provider: ({ children }) => (
       <UnifiedThemeProvider theme={myTheme} children={children} />
     ),
@@ -59,7 +59,7 @@ const app = createApp({
     id: 'light-theme',
     title: 'Light Theme',
     variant: 'light',
-    icon: <Brightness2Icon />,
+    icon: <LightIcon/>,
     Provider: ({ children }) => (
       <UnifiedThemeProvider theme={myTheme} children={children} />
   )}
