@@ -19,7 +19,7 @@ const darkSecondary = {
 
 }
 const lightPrimary = {
-    main: '#FECBA7',
+    main: '#FD7B23',
     light: '#FECBA7',
     dark: '#b75c1a',
 }
