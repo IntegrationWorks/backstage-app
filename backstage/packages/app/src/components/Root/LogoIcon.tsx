@@ -13,7 +13,7 @@ const LogoIcon = () => {
   const classes = useStyles();
 
   return <img className={classes.img} src={CustomLogoSQ} />;
-
+  
 };
 
 export default LogoIcon;

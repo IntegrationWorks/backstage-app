@@ -48,3 +48,46 @@ variable "cname_record_name" {
 variable "dns_resource_group_name" {
   description = "Name of the resource group which contains the DNS Zone"
 }
+
+variable "azure_tenant_id" {
+  description = "Azure tenant ID"
+  sensitive   = true
+
+}
+
+variable "azure_auth_client_id" {
+  description = "Azure client ID for backstage authentication"
+  sensitive   = true
+}
+
+variable "azure_auth_client_secret" {
+  description = "Azure client secret for backstage authentication"
+  sensitive   = true
+}
+variable "postgres_host" {
+  description = "Postgres DB hostname"
+  sensitive   = true
+}
+
+variable "postgres_user" {
+  description = "Postgres DB admin username"
+  sensitive   = true
+}
+variable "postgres_password" {
+  description = "Postgres DB admin password"
+  sensitive   = true
+}
+
+variable "postgres_port" {
+  description = "Postgres DB port"
+  sensitive   = true
+  default     = 5432
+}
+
+variable "postgres_ssl_mode" {
+  description = "Postgres DB ssl mode"
+  sensitive   = true
+  default     = "require"
+
+}
+
