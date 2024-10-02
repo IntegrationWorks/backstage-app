@@ -41,18 +41,29 @@ import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
 import { UnifiedThemeProvider } from '@backstage/theme';
 import { myTheme } from './theme/myTheme';
+import LightIcon from '@material-ui/icons/WbSunny';
+import Brightness2Icon from '@material-ui/icons/Brightness2';
 
 const app = createApp({
   apis,
   themes: [{
-    id: 'my-theme',
-    title: 'My Custom Theme',
+    id: 'dark-theme',
+    title: 'Dark Theme',
     variant: 'dark',
-
+    icon: <LightIcon />,
     Provider: ({ children }) => (
       <UnifiedThemeProvider theme={myTheme} children={children} />
     ),
-  }]
+  },
+  {  
+    id: 'light-theme',
+    title: 'Light Theme',
+    variant: 'light',
+    icon: <Brightness2Icon />,
+    Provider: ({ children }) => (
+      <UnifiedThemeProvider theme={myTheme} children={children} />
+  )}
+]
   ,
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
