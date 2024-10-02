@@ -51,14 +51,14 @@ export const lightTheme = createUnifiedTheme({
     ...createBaseThemeOptions({
         palette: {
             ...palettes.dark,
-            primary: primary,
-            secondary: secondary
+            primary: lightPrimary,
+            secondary: lightSecondary
 
         },
     }),
     // fontFamily: 'Calibri',
     defaultPageTheme: 'home',
     pageTheme: {
-        home: genPageTheme({ colors: ['#FD7B23', '#3A444A'], shape: shapes.wave }),
+        home: genPageTheme({ colors: ['#FD7B23', '#D8DADB'], shape: shapes.wave }),
     }
 });

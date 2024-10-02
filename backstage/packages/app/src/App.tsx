@@ -40,7 +40,8 @@ import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/
 import { githubAuthApiRef, microsoftAuthApiRef, configApiRef, useApi } from '@backstage/core-plugin-api';
 
 import { UnifiedThemeProvider } from '@backstage/theme';
-import { myTheme } from './theme/myTheme';
+import { darkTheme } from './theme/myTheme';
+import { lightTheme } from './theme/myTheme';
 import LightIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 
@@ -52,7 +53,7 @@ const app = createApp({
     variant: 'dark',
     icon: <Brightness2Icon />,
     Provider: ({ children }) => (
-      <UnifiedThemeProvider theme={myTheme} children={children} />
+      <UnifiedThemeProvider theme={darkTheme} children={children} />
     ),
   },
   {  
@@ -61,7 +62,7 @@ const app = createApp({
     variant: 'light',
     icon: <LightIcon/>,
     Provider: ({ children }) => (
-      <UnifiedThemeProvider theme={myTheme} children={children} />
+      <UnifiedThemeProvider theme={lightTheme} children={children} />
   )}
 ]
   ,
