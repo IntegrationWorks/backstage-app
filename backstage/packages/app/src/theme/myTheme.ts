@@ -34,7 +34,13 @@ export const darkTheme = createUnifiedTheme({
         palette: {
             ...palettes.dark,
             primary: darkPrimary,
-            secondary: darkSecondary
+            secondary: darkSecondary,
+            navigation: {
+                background: '#3A444A',
+                indicator: '#898F92',
+                color: '#D8DADB',
+                selectedColor: '#E7E9E9',
+              },
 
         },
     }),
@@ -50,8 +56,13 @@ export const lightTheme = createUnifiedTheme({
         palette: {
             ...palettes.light,
             primary: lightPrimary,
-            secondary: lightSecondary
-
+            secondary: lightSecondary,
+            navigation: {
+                background: '#3A444A',
+                indicator: '#898F92',
+                color: '#D8DADB',
+                selectedColor: '#E7E9E9',
+              },
         },
     }),
     // fontFamily: 'Calibri',
