@@ -18,17 +18,15 @@ const darkSecondary = {
     dark: '#1C1A1A'
 
 }
-
 const lightPrimary = {
-    main: '#FD7B23',
+    main: '#FECBA7',
     light: '#FECBA7',
     dark: '#b75c1a',
 }
 const lightSecondary = {
-    main: '#3A444A',
-    light: '#D8DADB',
+    main: '#E7E9E9',
+    light: '#E7E9E9',
     dark: '#1C1A1A'
-
 }
 
 export const darkTheme = createUnifiedTheme({
@@ -43,14 +41,14 @@ export const darkTheme = createUnifiedTheme({
     // fontFamily: 'Calibri',
     defaultPageTheme: 'home',
     pageTheme: {
-        home: genPageTheme({ colors: ['#FD7B23', '#3A444A'], shape: shapes.wave }),
+        home: genPageTheme({ colors: ['#FD7B23', '#B75C1A'], shape: shapes.wave }),
     }
 });
 
 export const lightTheme = createUnifiedTheme({
     ...createBaseThemeOptions({
         palette: {
-            ...palettes.dark,
+            ...palettes.light,
             primary: lightPrimary,
             secondary: lightSecondary
 
@@ -59,6 +57,6 @@ export const lightTheme = createUnifiedTheme({
     // fontFamily: 'Calibri',
     defaultPageTheme: 'home',
     pageTheme: {
-        home: genPageTheme({ colors: ['#FD7B23', '#D8DADB'], shape: shapes.wave }),
+        home: genPageTheme({ colors: ['#FD7B23', '#FECBA7'], shape: shapes.wave }),
     }
 });
