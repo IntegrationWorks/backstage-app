@@ -14,7 +14,7 @@ const darkPrimary = {
 }
 const darkSecondary = {
     main: '#3A444A',
-    light: '#D8DADB',
+    light: '#3A444A',
     dark: '#1C1A1A'
 
 }
@@ -26,7 +26,7 @@ const lightPrimary = {
 const lightSecondary = {
     main: '#E7E9E9',
     light: '#E7E9E9',
-    dark: '#1C1A1A'
+    dark: '#D8DAD8'
 }
 
 export const darkTheme = createUnifiedTheme({
@@ -40,6 +40,10 @@ export const darkTheme = createUnifiedTheme({
                 indicator: '#898F92',
                 color: '#D8DADB',
                 selectedColor: '#E7E9E9',
+              },
+              background: {
+                paper: '#3A444A',
+                default: '#1C1A1A',
               },
 
         },
@@ -62,6 +66,10 @@ export const lightTheme = createUnifiedTheme({
                 indicator: '#898F92',
                 color: '#D8DADB',
                 selectedColor: '#E7E9E9',
+              },
+              background: {
+                default: '#d5d6db',
+                paper: '#E7E9E9',
               },
         },
     }),
