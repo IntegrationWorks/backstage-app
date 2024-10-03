@@ -45,6 +45,7 @@ techdocs:
     type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 catalog:
+  # orphanStrategy: delete
   processingInterval: { minutes: 5 }
   rules:
     - allow: [Component, System, API, Resource, Location, Template]
@@ -59,6 +60,12 @@ catalog:
         schedule:
           frequency: PT45M
           timeout: PT3M
+    microsoftGraphOrg:
+      default:
+        tenantId: ${AZURE_TENANT_ID}
+        schedule:
+          frequency: PT1H
+          timeout: PT50M
     github:
       providerId:
         organization: "IntegrationWorks"
@@ -74,8 +81,8 @@ catalog:
       templateProvider:
         organization: "IntegrationWorks"
         catalogPath: "**/template.yaml"
-        # filters:
-        #   repository: "backstage-templates"
+        filters:
+          repository: "backstage-templates"
         schedule: # same options as in SchedulerServiceTaskScheduleDefinition
           # supports cron, ISO duration, "human duration" as used in code
           frequency: { minutes: 30 }

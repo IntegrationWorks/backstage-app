@@ -43,3 +43,5 @@ The workflow first logs into Azure which is needed for Terraform to have permiss
 Terraform is then setup on the runner. Then there are steps to initialise the terraform directory and validate the terraform files.
 
 Then there are steps to perform `terraform plan` and `terraform apply` which will deploy the resources to Azure. If the destroy input is true, plan and apply do not run and instead `terraform destroy` is run which will remove the resources from Azure.
+
+## Running Locally
