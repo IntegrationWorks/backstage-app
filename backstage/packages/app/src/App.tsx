@@ -44,6 +44,7 @@ import { darkTheme } from './theme/myTheme';
 import { lightTheme } from './theme/myTheme';
 import LightIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
+import { GithubIssuesFormPage } from 'plugin-github-issues-form';
 
 const app = createApp({
   apis,
@@ -164,6 +165,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
+    <Route path="/github-issues-form" element={<GithubIssuesFormPage />}/>
   </FlatRoutes>
 );
 
