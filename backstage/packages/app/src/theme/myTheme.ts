@@ -39,11 +39,11 @@ export const darkTheme = createUnifiedTheme({
                 background: '#3A444A',
                 indicator: '#898F92',
                 color: '#D8DADB',
-                selectedColor: '#E7E9E9',
+                selectedColor: '#FD7B23',
               },
               background: {
-                paper: '#3A444A',
-                default: '#1C1A1A',
+                paper: '#898F92',
+                default: '#3A444A',
               },
 
         },
@@ -65,10 +65,10 @@ export const lightTheme = createUnifiedTheme({
                 background: '#3A444A',
                 indicator: '#898F92',
                 color: '#D8DADB',
-                selectedColor: '#E7E9E9',
+                selectedColor: '#FD7B23',
               },
               background: {
-                default: '#d5d6db',
+                default: '#D8DADB',
                 paper: '#E7E9E9',
               },
         },
