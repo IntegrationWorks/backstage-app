@@ -42,8 +42,8 @@ export const darkTheme = createUnifiedTheme({
                 selectedColor: '#FD7B23',
               },
               background: {
-                paper: '#898F92',
-                default: '#3A444A',
+                paper: '#3A444A',
+                default: '#1C1A1A',
               },
 
         },
