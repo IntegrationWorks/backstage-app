@@ -63,6 +63,9 @@ techdocs:
   publisher:
     type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
+scaffolder:
+  # see https://backstage.io/docs/features/software-templates/configuration for software template options
+
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   experimentalExtraAllowedOrigins:
@@ -89,6 +92,3 @@ auth:
         signIn:
           resolvers:
             - resolver: emailMatchingUserEntityProfileEmail
-
-scaffolder:
-  # see https://backstage.io/docs/features/software-templates/configuration for software template options

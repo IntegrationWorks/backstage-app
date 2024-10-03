@@ -37,13 +37,6 @@ backend:
     # knexConfig:
     #   debug: true
 
-techdocs:
-  builder: "local" # Alternatives - 'external'
-  generator:
-    runIn: "local" # Alternatives - 'local'
-  publisher:
-    type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
-
 catalog:
   # orphanStrategy: delete
   processingInterval: { minutes: 5 }
