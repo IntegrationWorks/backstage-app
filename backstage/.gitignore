@@ -41,8 +41,8 @@ dist-types
 # MkDocs build output
 site
 
-# Local configuration files
-*.local.yaml
+# # Local configuration files
+# *.local.yaml
 
 # Sensitive credentials
 github-credentials*
