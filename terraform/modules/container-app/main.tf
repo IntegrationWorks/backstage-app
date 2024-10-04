@@ -24,9 +24,19 @@ resource "azurerm_container_app" "this" {
       image  = var.container_image_name
       cpu    = 0.25
       memory = "0.5Gi"
+
+      dynamic "env" {
+        for_each = var.envs
+
+        content {
+          name        = env.value.name
+          secret_name = env.value.secret_name
+        }
+      }
     }
     min_replicas = 1
     max_replicas = 1
+
   }
 
 
@@ -44,6 +54,16 @@ resource "azurerm_container_app" "this" {
   lifecycle {
     ignore_changes = [ingress.0.custom_domain] // Required to not delete the custom domain created in dns.tf
   }
+  dynamic "secret" {
+    for_each = var.secrets
+    content {
+      name  = secret.value.name
+      value = secret.value.value
+    }
+
+  }
+
+
 }
 
 

@@ -41,11 +41,11 @@ dist-types
 # MkDocs build output
 site
 
-# Local configuration files
-*.local.yaml
+# # Local configuration files
+# *.local.yaml
 
 # Sensitive credentials
-*-credentials.yaml
+github-credentials*
 
 # vscode database functionality support files
 *.session.sql

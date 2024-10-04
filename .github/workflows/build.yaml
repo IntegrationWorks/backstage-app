@@ -46,9 +46,6 @@ jobs:
       - name: Make replace_env_vars.sh executable
         run: chmod +x ./backstage/replace_env_vars.sh
 
-      - name: List files in the current directory
-        run: ls -la ./backstage
-      
       - name: Write Github Creds
         working-directory: ./backstage
         run: |
@@ -59,26 +56,7 @@ jobs:
           clientSecret: ${{env.AUTH_ORG_CLIENT_SECRET}}
           webhookSecret: ${{env.AUTH_ORG_WEBHOOK_SECRET}}
           privateKey: ${{env.AUTH_ORG_PRIVATE_KEY}}" >> github-credentials.yaml
-
-      - name: test
-        run: | 
-          ls
-
-      - name: test-1
-        working-directory: ./backstage
-        run: | 
-          ls
-      - name: Replace environment variables in app-config.yaml
-        working-directory: ./backstage
-        run: |
-          bash replace_env_vars.sh app-config.yaml BASE_URL=${{ env.BASE_URL }} AZURE_TENANT_ID=${{env.ARM_TENANT_ID}} AZURE_CLIENT_ID=${{env.AZURE_AUTH_CLIENT_ID}} AZURE_CLIENT_SECRET=${{env.AZURE_AUTH_CLIENT_SECRET}}
-
-      - name: Replace environment variables in app-config.production.yaml
-        working-directory: ./backstage
-        run: |
-          bash replace_env_vars.sh app-config.production.yaml POSTGRES_HOST=${{ env.POSTGRES_HOST }} POSTGRES_USER=${{ env.POSTGRES_USER }} POSTGRES_PORT=${{ env.POSTGRES_PORT }} POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} BASE_URL=${{ env.BASE_URL }}
-                
-
+          
       - name: Install yarn
         run: |
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/yarn.gpg
@@ -94,10 +72,11 @@ jobs:
 
       - name: Build Application
         working-directory: ./backstage
+        
         run: |
           # Build backend
           echo $POSTGRES_PORT
-          yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
+          yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml      
 
       - name: Docker Login
         uses: azure/docker-login@v2
@@ -115,7 +94,7 @@ jobs:
           context: ./backstage
           push: true
           tags: ${{ secrets.AZURE_REPO_URL }}/iw-accelerator:latest
-          file: backstage/packages/backend/Dockerfile
+          file: backstage/packages/backend/Dockerfile          
 
       - name: Build and push Nginx image
         uses: docker/build-push-action@v6

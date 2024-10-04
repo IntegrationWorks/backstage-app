@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 });
 const LogoFull = () => {
   const classes = useStyles();
-  return <img className={classes.img} src={CustomLogoFull} />;
+  return <img className={classes.img} src={CustomLogoFull} alt="Fusion5" />;
 };
 
 

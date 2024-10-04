@@ -40,3 +40,21 @@ variable "identity_id" {
 variable "acr_server" {
   description = "Login server for azure container apps."
 }
+
+variable "secrets" {
+  description = "List of secrets to add to the contianer app"
+
+  type = list(object({
+    name  = string
+    value = string
+  }))
+}
+
+variable "envs" {
+  description = "List of Environment variables"
+
+  type = list(object({
+    name        = string
+    secret_name = string
+  }))
+}

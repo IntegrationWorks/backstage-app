@@ -1,6 +1,6 @@
 app:
-  title: Developer Portal
-  baseUrl: ${BASE_URL}
+  title: Fusion5 Developer Portal
+  baseUrl: "https://${BASE_URL}"
   extensions:
     - entity-content:github-actions/entity
     - entity-card:github-actions/latest-workflow-run
@@ -18,7 +18,7 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  baseUrl: ${BASE_URL}
+  baseUrl: "https://${BASE_URL}"
   listen:
     port: 7007
     # Uncomment the following host directive to bind to specific interfaces
@@ -44,13 +44,13 @@ integrations:
     #   apiBaseUrl: https://ghe.example.net/api/v3
     #   token: ${GHE_TOKEN}
 
-proxy:
-  ### Example for how to add a proxy endpoint for the frontend.
-  ### A typical reason to do this is to handle HTTPS and CORS for internal services.
-  # endpoints:
-  #   '/test':
-  #     target: 'https://example.com'
-  #     changeOrigin: true
+# proxy:
+### Example for how to add a proxy endpoint for the frontend.
+### A typical reason to do this is to handle HTTPS and CORS for internal services.
+# endpoints:
+#   '/test':
+#     target: 'https://example.com'
+#     changeOrigin: true
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -59,9 +59,12 @@ proxy:
 techdocs:
   builder: "local" # Alternatives - 'external'
   generator:
-    runIn: "docker" # Alternatives - 'local'
+    runIn: "local" # Alternatives - 'local'
   publisher:
     type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+
+scaffolder:
+  # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
@@ -89,49 +92,3 @@ auth:
         signIn:
           resolvers:
             - resolver: emailMatchingUserEntityProfileEmail
-
-scaffolder:
-  # see https://backstage.io/docs/features/software-templates/configuration for software template options
-
-catalog:
-  orphanStrategy: delete
-  processingInterval: { minutes: 45 }
-  rules:
-    - allow: [Component, System, API, Resource, Location, Template]
-  locations: []
-  providers:
-    githubOrg:
-      - id: production
-        githubUrl: "https://github.com"
-        organization: "IntegrationWorks"
-        schedule:
-          frequency: PT45M
-          timeout: PT3M
-    microsoftGraphOrg:
-      default:
-        tenantId: ${AZURE_TENANT_ID}
-        schedule:
-          frequency: PT1H
-          timeout: PT50M
-    github:
-      providerId:
-        organization: "IntegrationWorks"
-
-        filters:
-          branch: "main" # string
-          repository: "backstage-templates" # Regex
-        schedule: # same options as in SchedulerServiceTaskScheduleDefinition
-          # supports cron, ISO duration, "human duration" as used in code
-          frequency: { minutes: 30 }
-          # supports ISO duration, "human duration" as used in code
-          timeout: { minutes: 3 }
-
-    ## Uncomment these lines to add more example data
-    # - type: url
-    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
-
-    ## Uncomment these lines to add an example org
-    # - type: url
-    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
-    #   rules:
-    #     - allow: [User, Group]
