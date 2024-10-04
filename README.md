@@ -45,3 +45,67 @@ Terraform is then setup on the runner. Then there are steps to initialise the te
 Then there are steps to perform `terraform plan` and `terraform apply` which will deploy the resources to Azure. If the destroy input is true, plan and apply do not run and instead `terraform destroy` is run which will remove the resources from Azure.
 
 ## Running Locally
+
+### Prerequisites
+
+- Recommend using a Unix based OS such as Linux or MacOS.
+- [Node.js Active LTS Release](https://nodejs.org/en/about/previous-releases)
+  - Recommend using nvm for this:
+    - [Install nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
+    - [Install Node with nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#usagem)
+- [Yarn](https://classic.yarnpkg.com/en/docs/install/)
+- [Docker](https://docs.docker.com/engine/install/)
+- [PostgreSQL](https://www.postgresql.org/download/)
+
+### Configure Postgres User
+
+Before the application can run, PostgreSQL needs to be setup.
+
+1. Install PostgreSQL:
+    - On Linux:
+
+        ```bash
+            sudo apt install postgresql
+        ```
+
+    - On Mac: [Download the latest release](https://postgresapp.com/).
+2. Open PostgreSQL:
+    - On linux:
+
+        ```bash
+            sudo -u postgres psql
+        ```
+
+    - On Mac:
+
+        ```Zsh
+            psql -U postgres
+        ```
+
+    - In your terminal you should see something like this:
+
+        ```Zsh
+        postgres=#
+        ```
+
+3. Modify the existing postgres user to password of your choosing. The configuration is setup to use a password of `postgres` locally:
+
+    ```SQL
+        postgres=# ALTER USER postgres PASSWORD 'postgres';
+    ```
+
+### Start up Backstage
+
+Now we are ready to start the application from the terminal using yarn. Make sure you are in a regular terminal and not in the PostgreSQL terminal.
+
+```bash
+yarn dev
+```
+
+The application will begin to start up. As soon as it states:
+
+```bash
+[0] webpack compiled successfully
+```
+
+The application is ready to be explored at `localhost:3000`.
