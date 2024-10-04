@@ -1,0 +1,73 @@
+app:
+  title: Developer Portal
+  # Should be the same as backend.baseUrl when using the `app-backend` plugin.
+  baseUrl: "http://localhost:3000"
+organization:
+  name: Fusion5
+
+backend:
+  # Note that the baseUrl should be the URL that the browser and other clients
+  # should use when communicating with the backend, i.e. it needs to be
+  # reachable not just from within the backend host, but from all of your
+  # callers. When its value is "http://localhost:7007", it's strictly private
+  # and can't be reached by others.
+  # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
+  # all interfaces, the most permissive setting. The right value depends on your specific deployment.
+  listen:
+    port: 7007
+  baseUrl: "http://localhost:7007"
+  csp:
+    connect-src: ["'self'", "http:", "https:"]
+  cors:
+    origin: ${BASE_URL}
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+
+  # config options: https://node-postgres.com/apis/client
+
+  database:
+    client: pg
+    connection:
+      host: localhost
+      port: 5432
+      user: postgres
+      password: postgres
+
+catalog:
+  # orphanStrategy: delete
+  processingInterval: { minutes: 5 }
+  rules:
+    - allow: [Component, System, API, Resource, Location, Template]
+  locations:
+    - type: url
+      target: https://github.com/IntegrationWorks/backstage-templates-testing/blob/main**/template.yaml
+  providers:
+    githubOrg:
+      - id: production
+        githubUrl: "https://github.com"
+        organization: "IntegrationWorks"
+        schedule:
+          frequency: PT45M
+          timeout: PT3M
+    github:
+      providerId:
+        organization: "IntegrationWorks"
+        catalogPath: "**/catalog-info.yaml" # string
+        filters:
+          # branch: "main" # string
+        #   repository: "backstage-templates" # Regex
+        schedule: # same options as in SchedulerServiceTaskScheduleDefinition
+          # supports cron, ISO duration, "human duration" as used in code
+          frequency: { minutes: 30 }
+          # supports ISO duration, "human duration" as used in code
+          timeout: { minutes: 3 }
+      templateProvider:
+        organization: "IntegrationWorks"
+        catalogPath: "**/template.yaml"
+        filters:
+          repository: "backstage-templates-testing"
+        schedule: # same options as in SchedulerServiceTaskScheduleDefinition
+          # supports cron, ISO duration, "human duration" as used in code
+          frequency: { minutes: 30 }
+          # supports ISO duration, "human duration" as used in code
+          timeout: { minutes: 3 }
