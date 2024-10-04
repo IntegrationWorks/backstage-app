@@ -56,6 +56,7 @@ Then there are steps to perform `terraform plan` and `terraform apply` which wil
 - [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 - [Docker](https://docs.docker.com/engine/install/)
 - [PostgreSQL](https://www.postgresql.org/download/)
+- Github credentials need to be acquired. Ask `James Knott` to share them with you.
 
 ### Configure Postgres User
 
@@ -94,9 +95,31 @@ Before the application can run, PostgreSQL needs to be setup.
         postgres=# ALTER USER postgres PASSWORD 'postgres';
     ```
 
+### Create Github Credentials file
+
+Once you have the credentials, enter the backstage directory:
+
+```bash
+cd backstage-app/backstage
+```
+
+Once in this directory, create a file named `github-credentials.yaml` and copy the credentials into the file.
+
+This file has been addedd to the `.gitignore` so it wont be commited to the remote repository.
+
 ### Start up Backstage
 
 Now we are ready to start the application from the terminal using yarn. Make sure you are in a regular terminal and not in the PostgreSQL terminal.
+
+Enter the cloned repository and the backstage directory, if you haven't already:
+
+```bash
+cd backstage-app/backstage
+```
+
+This directory contains all the application code for Backstage.
+
+Start the application:
 
 ```bash
 yarn dev
