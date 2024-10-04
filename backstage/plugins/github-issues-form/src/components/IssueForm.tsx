@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(6),
     padding: theme.spacing(4),
-    backgroundColor: '#f9f9f9',
+    backgroundColor: theme.palette.background.default,
   },
   title: {
     marginBottom: theme.spacing(3),
@@ -44,15 +44,18 @@ export const IssueForm = () => {
     <Container maxWidth="sm">
       <Paper className={classes.root} elevation={4}>
         <Typography variant="h4" className={classes.title} align="center">
-          Report an Issue
+          Report an Issue or Improvement
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12}>
            <Typography variant="body1" gutterBottom>
              As the Backstage IDP is a work in progress, you may run in to issues or missing features, please fill out the following form, which will take you to creation of a GitHub issue to add it to the agenda. 
            </Typography>
+           <br/>
+            <Typography variant="h6" gutterBottom>
+             Title
+            </Typography>
             <TextField
-              label="Issue Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               fullWidth
@@ -61,11 +64,10 @@ export const IssueForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="body1" gutterBottom>
-              Detailed description of issue or feature request
+            <Typography variant="h6" gutterBottom>
+             Description
             </Typography>
             <TextField
-              label="Issue Description"
               value={body}
               onChange={(e) => setBody(e.target.value)}
               multiline
