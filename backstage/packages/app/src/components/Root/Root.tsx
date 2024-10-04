@@ -76,11 +76,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         </SidebarScrollWrapper>
       </SidebarGroup>
       <SidebarSpace />
-      <SidebarGroup
-        label="Help"
-        icon={<HelpIcon />}
-        to="/github-issues-form"
-      >
+      <SidebarGroup label="Help" icon={<MenuIcon />}>
+        <SidebarItem icon={HelpIcon} to="github-issues-form" text="Help" />
       </SidebarGroup>
       <SidebarDivider />
       <SidebarGroup

@@ -1,7 +1,33 @@
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Container } from '@material-ui/core';
+import {
+  TextField,
+  Button,
+  Typography,
+  Container,
+  Paper,
+  Grid,
+  makeStyles,
+} from '@material-ui/core';
+import { Send as SendIcon } from '@material-ui/icons';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: theme.spacing(6),
+    padding: theme.spacing(4),
+    backgroundColor: '#f9f9f9',
+  },
+  title: {
+    marginBottom: theme.spacing(3),
+    fontWeight: 'bold',
+    color: theme.palette.primary.main,
+  },
+  submitButton: {
+    marginTop: theme.spacing(3),
+  },
+}));
 
 export const IssueForm = () => {
+  const classes = useStyles();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
@@ -11,37 +37,58 @@ export const IssueForm = () => {
 
     const githubUrl = `https://github.com/IntegrationWorks/backstage-app/issues/new?title=${encodedTitle}&body=${encodedBody}`;
 
-    window.location.href = githubUrl;
+    window.open(githubUrl, '_blank');
   };
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h5" gutterBottom>
-        Create a GitHub Issue
-      </Typography>
-      <TextField
-        label="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Body"
-        value={body}
-        onChange={e => setBody(e.target.value)}
-        multiline
-        fullWidth
-        margin="normal"
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleSubmit}
-        disabled={!title || !body}
-      >
-        Create
-      </Button>
+      <Paper className={classes.root} elevation={4}>
+        <Typography variant="h4" className={classes.title} align="center">
+          Report an Issue
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+           <Typography variant="body1" gutterBottom>
+             As the Backstage IDP is a work in progress, you may run in to issues or missing features, please fill out the following form, which will take you to creation of a GitHub issue to add it to the agenda. 
+           </Typography>
+            <TextField
+              label="Issue Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              fullWidth
+              variant="outlined"
+              required
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="body1" gutterBottom>
+              Detailed description of issue or feature request
+            </Typography>
+            <TextField
+              label="Issue Description"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              multiline
+              fullWidth
+              variant="outlined"
+              required
+            />
+          </Grid>
+          <Grid item xs={12} justifyContent="center">
+            <Button
+              className={classes.submitButton}
+              variant="contained"
+              color="primary"
+              onClick={handleSubmit}
+              disabled={!title || !body}
+              startIcon={<SendIcon />}
+              size="large"
+            >
+              Create Issue
+            </Button>
+          </Grid>
+        </Grid>
+      </Paper>
     </Container>
   );
 };
