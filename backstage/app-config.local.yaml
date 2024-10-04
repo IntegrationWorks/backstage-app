@@ -41,6 +41,8 @@ catalog:
   locations:
     - type: url
       target: https://github.com/IntegrationWorks/backstage-templates-testing/blob/main**/template.yaml
+    - type: url
+      target: https://github.com/IntegrationWorks/backstage-templates/blob/main**/template.yaml
   providers:
     githubOrg:
       - id: production
@@ -62,6 +64,17 @@ catalog:
           # supports ISO duration, "human duration" as used in code
           timeout: { minutes: 3 }
       templateProvider:
+        organization: "IntegrationWorks"
+        catalogPath: "**/template.yaml"
+        filters:
+          repository: "backstage-templates"
+        schedule: # same options as in SchedulerServiceTaskScheduleDefinition
+          # supports cron, ISO duration, "human duration" as used in code
+          frequency: { minutes: 30 }
+          # supports ISO duration, "human duration" as used in code
+          timeout: { minutes: 3 }
+
+      testTemplateProvider:
         organization: "IntegrationWorks"
         catalogPath: "**/template.yaml"
         filters:
