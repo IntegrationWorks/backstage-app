@@ -1,11 +1,7 @@
 app:
   title: Developer Portal
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
-  analytics:
-    ga:
-      debug: true
-    ga4:
-      debug: true
+  baseUrl: "http://localhost:3000"
 organization:
   name: Fusion5
 
@@ -17,25 +13,25 @@ backend:
   # and can't be reached by others.
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
+  listen:
+    port: 7007
+  baseUrl: "http://localhost:7007"
+  csp:
+    connect-src: ["'self'", "http:", "https:"]
+  cors:
+    origin: ${BASE_URL}
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
 
   # config options: https://node-postgres.com/apis/client
+
   database:
     client: pg
     connection:
-      host: ${POSTGRES_HOST}
-      port: ${POSTGRES_PORT}
-      user: ${POSTGRES_USER}
-      password: ${POSTGRES_PASSWORD}
-      ssl: true
-      # https://node-postgres.com/features/ssl
-      # you can set the sslmode configuration option via the `PGSSLMODE` environment variable
-      # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
-      # ssl:
-      #   ca: # if you have a CA file and want to verify it you can uncomment this section
-      #     $file: ./DigiCertGlobalRootCA.crt.pem
-
-    # knexConfig:
-    #   debug: true
+      host: localhost
+      port: 5432
+      user: postgres
+      password: postgres
 
 catalog:
   # orphanStrategy: delete
@@ -43,6 +39,8 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location, Template]
   locations:
+    - type: url
+      target: https://github.com/IntegrationWorks/backstage-templates-testing/blob/main**/template.yaml
     - type: url
       target: https://github.com/IntegrationWorks/backstage-templates/blob/main**/template.yaml
   providers:
@@ -53,12 +51,6 @@ catalog:
         schedule:
           frequency: PT45M
           timeout: PT3M
-    microsoftGraphOrg:
-      default:
-        tenantId: ${AZURE_TENANT_ID}
-        schedule:
-          frequency: PT1H
-          timeout: PT50M
     github:
       providerId:
         organization: "IntegrationWorks"
@@ -76,6 +68,17 @@ catalog:
         catalogPath: "**/template.yaml"
         filters:
           repository: "backstage-templates"
+        schedule: # same options as in SchedulerServiceTaskScheduleDefinition
+          # supports cron, ISO duration, "human duration" as used in code
+          frequency: { minutes: 30 }
+          # supports ISO duration, "human duration" as used in code
+          timeout: { minutes: 3 }
+
+      testTemplateProvider:
+        organization: "IntegrationWorks"
+        catalogPath: "**/template.yaml"
+        filters:
+          repository: "backstage-templates-testing"
         schedule: # same options as in SchedulerServiceTaskScheduleDefinition
           # supports cron, ISO duration, "human duration" as used in code
           frequency: { minutes: 30 }
