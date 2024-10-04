@@ -14,7 +14,7 @@ const darkPrimary = {
 }
 const darkSecondary = {
     main: '#3A444A',
-    light: '#D8DADB',
+    light: '#3A444A',
     dark: '#1C1A1A'
 
 }
@@ -26,7 +26,7 @@ const lightPrimary = {
 const lightSecondary = {
     main: '#E7E9E9',
     light: '#E7E9E9',
-    dark: '#1C1A1A'
+    dark: '#D8DAD8'
 }
 
 export const darkTheme = createUnifiedTheme({
@@ -34,7 +34,17 @@ export const darkTheme = createUnifiedTheme({
         palette: {
             ...palettes.dark,
             primary: darkPrimary,
-            secondary: darkSecondary
+            secondary: darkSecondary,
+            navigation: {
+                background: '#3A444A',
+                indicator: '#898F92',
+                color: '#D8DADB',
+                selectedColor: '#FD7B23',
+              },
+              background: {
+                paper: '#3A444A',
+                default: '#1C1A1A',
+              },
 
         },
     }),
@@ -50,8 +60,17 @@ export const lightTheme = createUnifiedTheme({
         palette: {
             ...palettes.light,
             primary: lightPrimary,
-            secondary: lightSecondary
-
+            secondary: lightSecondary,
+            navigation: {
+                background: '#3A444A',
+                indicator: '#898F92',
+                color: '#D8DADB',
+                selectedColor: '#FD7B23',
+              },
+              background: {
+                default: '#D8DADB',
+                paper: '#E7E9E9',
+              },
         },
     }),
     // fontFamily: 'Calibri',
