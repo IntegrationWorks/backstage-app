@@ -56,32 +56,9 @@ export const IssueForm = () => {
         <Grid container spacing={2}>
           <Grid item xs={12}>
            <Typography variant="body1" gutterBottom>
-             As the Backstage IDP is a work in progress, you may run in to issues or missing templates or features, please fill out the following form, which will take you to the creation of a GitHub issue. This will be added to the agenda. 
+             As the Backstage IDP is a work in progress, you may run in to issues or missing templates or features, please fill out the following form, which will take you to the creation of a GitHub issue, please apply the appropriate label to the issue and then submit the new issue. This will be added to the agenda. 
            </Typography>
            <br/>
-           {/* <FormControl component="fieldset" className={classes.formControl}>
-              <Typography variant="h6" gutterBottom>
-                Type of Report
-              </Typography>
-              <RadioGroup
-                aria-label="issue-type"
-                name="issueType"
-                value={issueType}
-                onChange={(e) => setIssueType(e.target.value)}
-                row
-              >
-                <FormControlLabel
-                  value="issue_report"
-                  control={<Radio color="primary" />}
-                  label="App Issue"
-                />
-                <FormControlLabel
-                  value="template_request"
-                  control={<Radio color="primary" />}
-                  label="Improvement Request"
-                />
-              </RadioGroup>
-            </FormControl> */}
             <Typography variant="h6" gutterBottom >
              Title
             </Typography>
