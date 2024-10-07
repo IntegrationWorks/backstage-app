@@ -1,5 +1,5 @@
 import { createPlugin, createRouteRef, createRoutableExtension } from '@backstage/core-plugin-api';
-import { IssueForm } from './components/IssueForm';
+import { IssueForm } from './components/GithubIssuesFormPage';
 
 export const rootRouteRef = createRouteRef({
   id: 'githubIssuesFormPlugin',
