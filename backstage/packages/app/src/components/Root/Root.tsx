@@ -25,6 +25,7 @@ import {
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import HelpIcon from '@material-ui/icons/Help';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -75,6 +76,9 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         </SidebarScrollWrapper>
       </SidebarGroup>
       <SidebarSpace />
+      <SidebarGroup label="Help" icon={<MenuIcon />}>
+        <SidebarItem icon={HelpIcon} to="github-issues-form" text="Help" />
+      </SidebarGroup>
       <SidebarDivider />
       <SidebarGroup
         label="Settings"
