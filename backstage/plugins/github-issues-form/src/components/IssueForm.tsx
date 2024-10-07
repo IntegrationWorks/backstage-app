@@ -59,7 +59,7 @@ export const IssueForm = () => {
              As the Backstage IDP is a work in progress, you may run in to issues or missing templates or features, please fill out the following form, which will take you to the creation of a GitHub issue. This will be added to the agenda. 
            </Typography>
            <br/>
-           <FormControl component="fieldset" className={classes.formControl}>
+           {/* <FormControl component="fieldset" className={classes.formControl}>
               <Typography variant="h6" gutterBottom>
                 Type of Report
               </Typography>
@@ -81,8 +81,8 @@ export const IssueForm = () => {
                   label="Improvement Request"
                 />
               </RadioGroup>
-            </FormControl>
-            <Typography variant="h6" gutterBottom>
+            </FormControl> */}
+            <Typography variant="h6" gutterBottom >
              Title
             </Typography>
             <TextField
@@ -95,7 +95,7 @@ export const IssueForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom > 
              Description
             </Typography>
             <TextField
@@ -108,7 +108,7 @@ export const IssueForm = () => {
               inputProps={{ maxLength: 2000 }}
             />
           </Grid>
-          <Grid item xs={12} justifyContent="center">
+          <Grid item xs={12} justifyContent="center" style={{ display: 'flex', justifyContent: 'center' }}>
             <Button
               className={classes.submitButton}
               variant="contained"
@@ -117,6 +117,7 @@ export const IssueForm = () => {
               disabled={!title || !body}
               startIcon={<SendIcon />}
               size="large"
+              style={{ textAlign: 'center' }}
             >
               Create Issue
             </Button>
