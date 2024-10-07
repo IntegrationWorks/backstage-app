@@ -42,10 +42,7 @@ export const IssueForm = () => {
   const handleSubmit = () => {
     const encodedTitle = encodeURIComponent(title);
     const encodedBody = encodeURIComponent(body);
-    const template = issueType === 'issue_report' ? 'issue_report.md' : 'template_request.md';
-
-
-    const githubUrl = `https://github.com/IntegrationWorks/backstage-templates/issues/new?title=${encodedTitle}&body=${encodedBody}&template=${template}`;
+    const githubUrl = `https://github.com/IntegrationWorks/backstage-app/issues/new?title=${encodedTitle}&body=${encodedBody}`;
 
     window.open(githubUrl, '_blank');
   };
@@ -59,7 +56,7 @@ export const IssueForm = () => {
         <Grid container spacing={2}>
           <Grid item xs={12}>
            <Typography variant="body1" gutterBottom>
-             As the Backstage IDP is a work in progress, you may run in to issues or missing features, please fill out the following form, which will take you to the creation of a GitHub issue. This will be added to the agenda. 
+             As the Backstage IDP is a work in progress, you may run in to issues or missing templates or features, please fill out the following form, which will take you to the creation of a GitHub issue. This will be added to the agenda. 
            </Typography>
            <br/>
            <FormControl component="fieldset" className={classes.formControl}>
@@ -81,7 +78,7 @@ export const IssueForm = () => {
                 <FormControlLabel
                   value="template_request"
                   control={<Radio color="primary" />}
-                  label="Template Request"
+                  label="Improvement Request"
                 />
               </RadioGroup>
             </FormControl>
@@ -93,6 +90,7 @@ export const IssueForm = () => {
               onChange={(e) => setTitle(e.target.value)}
               fullWidth
               variant="outlined"
+              inputProps={{ maxLength: 256 }}
               required
             />
           </Grid>
@@ -107,6 +105,7 @@ export const IssueForm = () => {
               fullWidth
               variant="outlined"
               required
+              inputProps={{ maxLength: 2000 }}
             />
           </Grid>
           <Grid item xs={12} justifyContent="center">
