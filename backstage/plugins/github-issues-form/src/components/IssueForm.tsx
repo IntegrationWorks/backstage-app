@@ -7,10 +7,6 @@ import {
   Paper,
   Grid,
   makeStyles,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl
 } from '@material-ui/core';
 import { Send as SendIcon } from '@material-ui/icons';
 
@@ -37,7 +33,6 @@ export const IssueForm = () => {
   const classes = useStyles();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [issueType, setIssueType] = useState('app-issue');
 
   const handleSubmit = () => {
     const encodedTitle = encodeURIComponent(title);
