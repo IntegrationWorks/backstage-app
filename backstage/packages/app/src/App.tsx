@@ -42,8 +42,8 @@ import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/
 import { githubAuthApiRef, microsoftAuthApiRef, configApiRef, useApi } from '@backstage/core-plugin-api';
 
 import { UnifiedThemeProvider } from '@backstage/theme';
-import { darkTheme } from './theme/myTheme';
-import { lightTheme } from './theme/myTheme';
+import { darkTheme, lightTheme } from './theme/myTheme';
+
 import LightIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 
