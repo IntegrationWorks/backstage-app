@@ -2,6 +2,14 @@ app:
   title: Developer Portal
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
   baseUrl: "http://localhost:3000"
+  support:
+    url: "http://localhost:3000/github-issues-form"
+    items:
+      - title: Experiencing an issue?
+        icon: github
+        links:
+          - url: "http://localhost:3000/github-issues-form"
+            title: GitHub Issues
 organization:
   name: Fusion5
 
