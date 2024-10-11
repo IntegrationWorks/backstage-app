@@ -1,6 +1,6 @@
 ---
 name: Template Request
-about: Describe this issue template's purpose here.
+about: Create an issue to request a template to be added to the Backstage IDP.
 title: "[FEATURE]: "
 labels: template
 assignees: ''
