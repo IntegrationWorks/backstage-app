@@ -8,6 +8,14 @@ app:
     - entity-card:github-actions/recent-workflow-runs:
         config:
           filter: kind:component,api,group
+  support:
+    url: "https://${BASE_URL}/github-issues-form"
+    items:
+      - title: Experiencing an issue?
+        icon: github
+        links:
+          - url: "https://${BASE_URL}/github-issues-form"
+            title: GitHub Issues
 organization:
   name: Fusion5
 

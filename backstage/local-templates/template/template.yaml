@@ -1,0 +1,147 @@
+# apiVersion: scaffolder.backstage.io/v1beta3
+# kind: Template
+# metadata:
+#   name: "local-basic-repo-template"
+#   title: Local Basic Repository
+#   description: Create a basic GitHub Repository
+#   tags:
+#     - recommended
+#     - blank
+# spec:
+#   owner: user:guest
+#   type: service
+
+#   parameters:
+#     - title: Provide some simple information
+#       required:
+#         - name
+#         - description
+#         - owner
+#       properties:
+#         name:
+#           title: Name
+#           type: string
+#           description: The name of your project in lower-kebab-case
+#           ui:field: EntityNamePicker
+#           pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
+#           ui:help: 'Include the app and or scope name in the repository'
+#         description:
+#           title: Description
+#           type: string
+#           description: Help others understand what this repo is for.
+#         owner:
+#           title: Owner
+#           type: string
+#           description: Owner of the component
+#           ui:field: OwnerPicker
+#           ui:options:
+#             allowedKinds:
+#               - Group
+#               - User
+#       errorMessage:
+#         properties:
+#           name: 'Please use lower-kebab-case for naming the repository'
+#     - title: Choose a location
+#       required:
+#         - repoUrl
+#       properties:
+#         repoUrl:
+#           title: Repository Location
+#           type: string
+#           ui:field: RepoUrlPicker
+#           ui:options:
+#             allowedHosts:
+#               - github.com
+#         visibility:
+#           title: Repository Visibility
+#           type: string
+#           enum:
+#             - public
+#             - private
+#           default: private
+#           name: visibility
+#           description: Select the visibility of the repository
+#           ui:help: 'Repositories that require GitActions are required to be public due to Org restrictions'
+
+#     - title: Enable CI/CD
+#       properties:
+#         cicd:
+#           title: CI/CD platform
+#           description: Select CI/CD platform. leave blank if N/A
+#           type: string
+#           default: na
+#           enum:
+#             - GithubActions
+#             - na
+#           enumNames:
+#             - Github Actions
+#             - N/A
+#         deploymentRuntime:
+#           title: Deployment Runtime
+#           description: Select Deployment Runtime
+#           type: string
+#           default: na
+#           enum:
+#             - ./deploy/rhos-helm-deploy-pipeline.yaml
+#             - ./deploy/eks-helm-deploy-pipeline.yaml
+#             - na
+#           enumNames:
+#             - RedHat OpenShift
+#             - EKS
+#             - N/A
+
+#   # This template is meant to be used on top of an existing template.
+#   # By adding the following and fetching from an absolute URL you can
+#   # add in the docs template
+#   steps:
+#     - id: template
+#       name: Fetch Skeleton + Template
+#       action: fetch:template
+#       input:
+#         url: ./skeleton
+#         values:
+#           name: ${{ parameters.name }}
+#           description: ${{ parameters.description }}
+#           owner: ${{ parameters.owner }}
+#           destination: ${{ parameters.repoUrl | parseRepoUrl }}
+
+#     - id: publish
+#       name: Publish
+#       action: publish:github
+#       input:
+#         allowedHosts: ['github.com']
+#         description: This is ${{ parameters.name }}
+#         repoUrl: ${{ parameters.repoUrl }}
+#         repoVisibility: ${{ parameters.visibility }} # public or 'internal' or 'private' TODO make private work with org secrets
+#         bypassPullRequestAllowances: 
+#           {
+#             users: ["iw-automation-service-account"] 
+#           }
+
+#     - id: github-action
+#       if: ${{ parameters.cicd === "GithubActions" }}
+#       name: Trigger Github Action
+#       action: github:actions:dispatch
+#       input:
+#         workflowId: push-pipeline-files.yaml
+#         repoUrl: 'github.com?repo=github-actions-templates&owner=IntegrationWorks'
+#         branchOrTagName: 'main'
+#         workflowInputs:
+#           repoUrl: ${{ parameters.repoUrl }}
+#           buildPipelineFile: ./build/docker-image-build-pipeline.yaml
+#           deployPipelineFile: ${{ parameters.deploymentRuntime }}
+
+#     - id: register
+#       name: Register
+#       action: catalog:register
+#       input:
+#         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+#         catalogInfoPath: '/catalog-info.yaml'
+
+#   output:
+#     links:
+#       - title: Repository
+#         url: ${{ steps.publish.output.remoteUrl }}
+#       - title: Open in catalog
+#         icon: catalog
+#         entityRef: ${{ steps.register.output.entityRef }}
