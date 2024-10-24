@@ -128,16 +128,8 @@ resource "azapi_update_resource" "custom_domain" {
   type        = "Microsoft.App/containerApps@2024-03-01"
   resource_id = module.nginx.id
 
-  body = jsonencode({
-    properties = {
-      ingress = {
-        customDomains = [
-          {
-            bindingType = "Disabled",
-            name        = time_sleep.dns_propagation.triggers["url"],
-          }
-        ]
-      }
-    }
-  })
+  body = {
+    "value": "{\"properties\":{\"ingress\":{\"customDomains\":[{\"bindingType\":\"Disabled\",\"name\":\"backstage.integration.works\"}]}}}",
+    "type": "string"
+  }
 }
