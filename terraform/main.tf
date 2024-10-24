@@ -129,7 +129,15 @@ resource "azapi_update_resource" "custom_domain" {
   resource_id = module.nginx.id
 
   body = {
-    "value": "{\"properties\":{\"ingress\":{\"customDomains\":[{\"bindingType\":\"Disabled\",\"name\":\"backstage.integration.works\"}]}}}",
-    "type": "string"
+    properties = {
+      ingress = {
+        customDomains = [
+          {
+            bindingType = "Disabled",
+            name        = time_sleep.dns_propagation.triggers["url"],
+          }
+        ]
+      }
+    }
   }
 }
