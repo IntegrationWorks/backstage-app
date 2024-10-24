@@ -107,7 +107,8 @@ data "azapi_resource" "app_verification_id" {
 }
 
 locals {
-  verificationId = jsondecode(data.azapi_resource.app_verification_id.output).properties.customDomainConfiguration.customDomainVerificationId
+  # verificationId = jsondecode(data.azapi_resource.app_verification_id.output.properties.customDomainConfiguration.customDomainVerificationId)
+  verificationId = data.azapi_resource.app_verification_id.output.properties.customDomainConfiguration.customDomainVerificationId
 }
 
 
